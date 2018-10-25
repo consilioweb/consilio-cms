@@ -85,7 +85,7 @@ elixir((mix) => {
 		], 'public/js/cms/cms-dashboard.js'); 
 
 	mix.scripts([
-		'resources/assets/js/cms/modules/forms_contents.js',
+		'resources/assets/js/cms/modules/dropzone.js',
 		], 'public/js/cms/cms-contents.js'); 	
 
 

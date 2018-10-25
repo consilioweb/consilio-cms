@@ -48,17 +48,8 @@
                 }
             }
         });
-        var red= '#fff';
 
-        chart.on('draw', function (context) {
-            if (context.type === "line") {
-                if (context.value.y < 0) {
-                    context.element.attr({
-                       style: 'stroke: ' + red + '; fill: ' + red + ';'
-                    });
-                } 
-            }
-        });
+
     }
     new icons_boxs();
     new graph_dash();

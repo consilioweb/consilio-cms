@@ -45,7 +45,7 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span class="hide-menu">Administração</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Páginas / Módulos</span></a></li>
+                                <li class="sidebar-item"><a href="{!!route('cms-modules')!!}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Páginas / Módulos</span></a></li>
                                 <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Definições</span></a></li>
                             </ul>
                         </li>                                                   

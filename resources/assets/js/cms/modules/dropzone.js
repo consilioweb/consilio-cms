@@ -7,4 +7,3 @@
 	}
 	new dropzone();
 }(jQuery));
-//# sourceMappingURL=cms-contents.js.map

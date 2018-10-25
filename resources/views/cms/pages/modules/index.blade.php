@@ -2,49 +2,60 @@
 
 @section('content')	
 
-<!-- Breadcrumb -->
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-	<li class="breadcrumb-item ">
-		<a href="{!!route('cms-dashboard')!!}">Home</a>
-	</li>
-{{-- 	<li class="breadcrumb-item">
-		<a href="#">Layouts</a>
-	</li> --}}
-	<li class="breadcrumb-item active">Modulos</li>
-</ol>
 
 
+<div class="page-breadcrumb">
+	<div class="row">
+		<div class="col-5 align-self-center">
+			<h4 class="page-title">Módulos</h4>
+		</div>
+		<div class="col-7 align-self-center">
+			<div class="d-flex align-items-center justify-content-end">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Módulos</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
 
-<div class="container">
-	<!-- Alerts -->
-	@include('cms.layouts._alerts')
+
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card card-accent-theme">
+			<!-- Alerts -->
+			@include('cms.layouts._alerts')
+			<div class="card">
 				<div class="card-body">
-					<div class="card-body">
-						{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}
-						<div class="row">
+					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}
+					<div class="row">
 
-							<div class="form-group col-sm-6">
-								{!!Form::text('title', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
-							</div>
-
-							<div class="form-group col-sm-6">
-								{!!Form::select('status', ['1' => 'Ativo',  '2' => 'Inativo'], null, ['class' => 'form-control', 'placeholder' => "Selecione"]) !!}	
-							</div>
-
+						<div class="form-group col-sm-6">
+							{!!Form::text('title', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
 						</div>
 
-						<button type="submit" class="btn btn-theme btn-sm"><i class="fa fa-search"></i> Buscar</button>
-						<a href="{!!route('cms-modules-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo</a>
-						{!! Form::close() !!}
+						<div class="form-group col-sm-6">
+							{!!Form::select('status', ['1' => 'Ativo',  '2' => 'Inativo'], null, ['class' => 'form-control', 'placeholder' => "Selecione"]) !!}	
+						</div>
+
 					</div>
+
+					<button type="submit" class="btn btn-theme btn-sm"><i class="fa fa-search"></i> Buscar</button>
+					<a href="{!!route('cms-modules-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo</a>
+					{!! Form::close() !!}
+
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-12">
-			<div class="card card-accent-theme">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="text-theme">Listagem de Modulos</h5>
 					<div class="table-responsive">
@@ -95,11 +106,8 @@
 					</table>
 				</div>
 			</div>
-			<!-- end card-body -->
 		</div>
-		<!-- end card -->
 	</div>
-</div>
 </div>
 
 @endsection 
