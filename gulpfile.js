@@ -55,6 +55,7 @@ elixir((mix) => {
 	mix.sass('resources/assets/sass/cms/style.scss', 'public/css/cms/style.css');
 	mix.sass(['resources/assets/sass/cms/pages/dashboard.scss'], 'public/css/cms/cms-dashboard.css');
 	mix.sass(['resources/assets/sass/cms/pages/contents.scss'], 'public/css/cms/cms-contents.css');
+	mix.sass(['resources/assets/sass/cms/pages/modules.scss'], 'public/css/cms/cms-modules.css');
 
 	mix.sass(['resources/assets/sass/cms/pages/contents-unic.scss'], 'public/css/cms/cms-contents-unic.css');
 	mix.sass(['resources/assets/sass/cms/pages/contents-list-create.scss'], 'public/css/cms/cms-contents-list-create.css');

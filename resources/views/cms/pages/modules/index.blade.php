@@ -104,6 +104,34 @@
 					</div>
 				</div>
 			</div>
+			<!-- Column -->
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Listagem de Modulos</h4>
+					
+					<table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+						<thead>
+							<tr>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">ID</th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Módulo</th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tipo do Modulo</th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($modules as $value)
+							<tr>
+								<td>{!!$value->modules_id!!}</td>
+								<td>{!!$value->module!!}</td>
+								<td>{!!$value->type_module()!!}</td>								
+								<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- Column -->
 		</div>
 	</div>
 </div>
