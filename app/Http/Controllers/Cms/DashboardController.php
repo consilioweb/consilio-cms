@@ -24,6 +24,8 @@ class DashboardController extends Controller
 		return view("cms/pages/dashboard/index", array(
 			"users" => $users,
 			"pages" => $modules,
+			"pages_unic" => Modules::where('type_module', '1')->where('status', '1')->get(),
+			"pages_list" => Modules::where('type_module', '2')->where('status', '1')->get(),
 		));
 	}
 }

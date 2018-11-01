@@ -56,12 +56,16 @@
         </div>
     </div>
 
+    
+
     <input type="hidden" name="app_url" id="app_url" value="{!!url("/")!!}">
     <input type="hidden" name="app_hash" id="app_hash" value="{!!criptBySystem(Auth::user()->users_id)!!}">
 
+    <!-- CK Editor -->
+    <script src="{{asset('public')}}/js/cms/libs/ckeditor/ckeditor.js"></script>
+
     <!-- Libs -->
     <script src="{{asset('public')}}/js/cms/app-libs.js"></script> 
-
     @if (file_exists("public/js/cms/".Route::currentRouteName()."-libs.js"))
     <script src="{{asset('public'.elixir('js/cms/'.Route::currentRouteName().'-libs.js'))}}"></script> 
     @endif

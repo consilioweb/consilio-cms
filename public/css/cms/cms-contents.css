@@ -176,6 +176,7 @@
 
 .dropzone .dz-preview:hover .dz-image img {
   transform: scale(1.05, 1.05);
+  -webkit-filter: blur(8px);
   filter: blur(8px);
 }
 

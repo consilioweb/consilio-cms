@@ -9,7 +9,7 @@ class Modules extends Model
     protected $table      = "modules";
 	protected $primaryKey = 'modules_id';
 	protected $fillable   = 
-	['module', 'title', 'subtitle',  'featured', 'category', 'featured_image', 'summary', 'content', 'credit_author', 'tags', 'initial_date', 'end_date' ,'starting_time', 'end_time',
+	['module','type_module', 'title', 'subtitle',  'featured', 'category', 'featured_image', 'summary', 'content', 'credit_author', 'tags', 'initial_date', 'end_date' ,'starting_time', 'end_time',
 	'publication_date', 'amount_1', 'amount_2', 'amount_3', 'check_1', 'check_2', 'check_3', 'external_link', 'optimization_seo', 'image_gallery', 'video_gallery', 'file_gallery',
 	'notifications', 'insert_users_id', 'update_users_id','status', 'created_at', 'updated_at'];
 
@@ -24,6 +24,18 @@ class Modules extends Model
 			break;
 		}
 	}
+    public function type_module() {
+        
+        switch ($this->type_module) {
+            case '1':
+                return 'Página Única';
+            break;
+            case '2':
+                return 'Listagem de Registros';
+            break;
+        }
+    }
+
 
 	public function user_insert()
     {

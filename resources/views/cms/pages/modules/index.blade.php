@@ -21,7 +21,7 @@
 				</nav>
 			</div>
 		</div>
-	</div>
+	</div> 
 </div>
 
 
@@ -36,7 +36,7 @@
 					<div class="row">
 
 						<div class="form-group col-sm-6">
-							{!!Form::text('title', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
+							{!!Form::text('module', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
 						</div>
 
 						<div class="form-group col-sm-6">
@@ -59,11 +59,12 @@
 				<div class="card-body">
 					<h5 class="text-theme">Listagem de Modulos</h5>
 					<div class="table-responsive">
-						<table class="table">
+						<table class="table  table-sm">
 							<thead>
 								<tr>
 									<th width="10">ID</th>
 									<th>Módulo</th>
+									<th>Tipo de Módulo</th>
 									<th width="20">Status</th>
 									<th width="20">Editar</th>
 									<th width="20">Excluir</th>
@@ -71,39 +72,36 @@
 							</thead>
 							<tbody>
 								@foreach($modules as $value)
-								<style type="text/css">
-								.card .btn{
-									margin: 0;
-								}
-							</style>
-							<tr>
-								<td>{!!$value->modules_id!!}</td>
-								<td><h6>{!!$value->module!!}</h6></td>
-								<td>
-									@if($value->status == 1)
-									<a href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn btn-theme ">
-										{!!$value->status()!!}
-									</a>
-									@elseif($value->status == 2)
-									<a href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn btn-theme ">
-										{!!$value->status()!!}
-									</a>
-									@endif
-								</td>
-								<td>
-									<a href="{!!route('cms-modules-update', $value->modules_id)!!}" class="btn btn-theme ">
-										<i class="fa fa-pencil" aria-hidden="true"></i>
-									</a>
-								</td>
-								<td>
-									<a href="{!!route('cms-modules-delete', $value->modules_id)!!}" class="btn btn-theme ">
-										<i class="fa fa-trash" aria-hidden="true"></i>
-									</a>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
+								<tr>
+									<td>{!!$value->modules_id!!}</td>
+									<td><h6>{!!$value->module!!}</h6></td>
+									<td>{!!$value->type_module()!!}</td>
+									<td>
+										@if($value->status == 1)
+										<a href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn btn-theme ">
+											{!!$value->status()!!}
+										</a>
+										@elseif($value->status == 2)
+										<a href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn btn-theme ">
+											{!!$value->status()!!}
+										</a>
+										@endif
+									</td>
+									<td>
+										<a href="{!!route('cms-modules-update', $value->modules_id)!!}" class="btn btn-theme ">
+											<i class="fas fa-pencil-alt" aria-hidden="true"></i>
+										</a>
+									</td>
+									<td>
+										<a href="{!!route('cms-modules-delete', $value->modules_id)!!}" class="btn btn-theme ">
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

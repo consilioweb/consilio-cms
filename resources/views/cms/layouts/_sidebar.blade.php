@@ -12,14 +12,27 @@
                             <i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Gerenciar</span>
                         </li>      
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-lead-pencil"></i><span class="hide-menu">Notícias</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-sitemap"></i><span class="hide-menu">Categorias</span></a></li>
+                        @foreach($pages_list as $value)
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-contents-list', $value->modules_id)!!}" aria-expanded="false">
+                                <i class="mdi mdi-lead-pencil"></i>
+                                <span class="hide-menu">{!!$value->module!!}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-categories')!!}" aria-expanded="false"><i class="mdi mdi-sitemap"></i><span class="hide-menu">Categorias</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-image-multiple"></i><span class="hide-menu">Mídias</span></a></li>                      
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span class="hide-menu">Páginas</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Sobre Nós</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Fotos</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Vídeos</span></a></li>
+                                @foreach($pages_unic as $value)
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-contents-unic', $value->modules_id)!!}" class="sidebar-link">
+                                        <i class="mdi mdi-octagram"></i>
+                                        <span class="hide-menu"> {!!$value->module!!}</span>
+                                    </a>
+                                </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuários</span></a></li> 

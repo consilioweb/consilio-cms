@@ -32,6 +32,21 @@ elixir((mix) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/*------------------------------------------------------------------------*/
 	/* CMS */
 	/*------------------------------------------------------------------------*/
@@ -40,6 +55,11 @@ elixir((mix) => {
 	mix.sass('resources/assets/sass/cms/style.scss', 'public/css/cms/style.css');
 	mix.sass(['resources/assets/sass/cms/pages/dashboard.scss'], 'public/css/cms/cms-dashboard.css');
 	mix.sass(['resources/assets/sass/cms/pages/contents.scss'], 'public/css/cms/cms-contents.css');
+
+	mix.sass(['resources/assets/sass/cms/pages/contents-unic.scss'], 'public/css/cms/cms-contents-unic.css');
+	mix.sass(['resources/assets/sass/cms/pages/contents-list-create.scss'], 'public/css/cms/cms-contents-list-create.css');
+
+	mix.sass(['resources/assets/sass/cms/pages/categories-create.scss'], 'public/css/cms/cms-categories-create.css');
 
 
 	/* JS Libs Cms */
@@ -68,25 +88,46 @@ elixir((mix) => {
 	// # JS PAGES
 	// ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
 
+
+
+	/* LIBS */
+
 	mix.scripts([
 		'resources/assets/js/libs/chartist/dist/chartist.min.js',
 		'resources/assets/js/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js',
 		], 'public/js/cms/cms-dashboard-libs.js'); 
 
+
 	mix.scripts([
-		'resources/assets/js/libs/dropzone/dist/min/dropzone.min.js',
-		], 'public/js/cms/cms-contents-libs.js'); 	
+		'resources/assets/js/cms/libs/select2.min.js',
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-contents-list-create-libs.js'); 	
+	mix.scripts([
+		'resources/assets/js/cms/libs/select2.min.js',
+		], 'public/js/cms/cms-categories-create-libs.js'); 	
 
 
-	// // ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+	/* MODULES */
 
 	mix.scripts([
 		'resources/assets/js/cms/modules/graphs_dashboard.js',
 		], 'public/js/cms/cms-dashboard.js'); 
+	
+	mix.scripts([
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/ck.editor.js',
+		], 'public/js/cms/cms-contents-unic.js'); 	
+	mix.scripts([
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/ck.editor.js',
+		'resources/assets/js/cms/modules/select2.js',
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-contents-list-create.js'); 
 
 	mix.scripts([
-		'resources/assets/js/cms/modules/dropzone.js',
-		], 'public/js/cms/cms-contents.js'); 	
+		'resources/assets/js/cms/modules/select2.js',
+		], 'public/js/cms/cms-categories-create.js'); 	
+
 
 
 

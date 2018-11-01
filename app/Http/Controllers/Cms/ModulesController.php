@@ -65,6 +65,7 @@ class ModulesController extends CmsController
      */
     public function store(Request $request)
     {
+
         
         if($request->input('title-checkbox') != 1){
             $request->merge(array(
@@ -263,6 +264,7 @@ class ModulesController extends CmsController
      */
     public function update(Request $request, $id)
     {
+
 
         if($request->input('title-checkbox') != 1){
             $request->merge(array(

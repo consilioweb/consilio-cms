@@ -47,15 +47,26 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 
 
 
-		Route::get('pagina/{modules_id}', array('as'  => 'cms-contents', 'uses' => 'ContentsController@index', 'nickname' => "Listar Conteudo"));
+		Route::get('gerenciar/{modules_id}', array('as'  => 'cms-contents-list', 'uses' => 'ContentsListController@index', 'nickname' => "Listar Conteudo"));
+		Route::get('gerenciar/{modules_id}/novo', array('as' => 'cms-contents-list-create', 'uses' => 'ContentsController@create', 'nickname' => "Criar Conteudo"));
+		Route::post('gerenciar/{modules_id}/novo', array('as' => 'cms-contents-list-create', 'uses' => 'ContentsController@store', 'nickname' => "Criar Conteudo"));
+		Route::get('gerenciar/{modules_id}/{contents_id}', array('as' => 'cms-contents-list-show', 'uses' => 'ContentsController@show', 'nickname' => "Visualizar Conteudo"));
+		Route::put('gerenciar/{modules_id}/{contents_id}', array('as' => 'cms-contents-list-update', 'uses' => 'ContentsController@update', 'nickname' => "Atualizar Conteudo"));
+		Route::get('gerenciar/excluir/{modules_id}/{contents_id}', array('as' => 'cms-contents-list-delete', 'uses' => 'ContentsController@destroy', 'nickname' => "Excluir Conteudo"));
+		Route::get('gerenciar/status/{modules_id}/{contents_id}/{action}', array('as' => 'cms-contents-list-status', 'uses' => 'ContentsController@status', 'nickname' => "Status de Conteudo"));
+		Route::get('gerenciar/excluir/foto/{modules_id}/{contents_id}', array('as' => 'cms-contents-delete-list-photo', 'uses' => 'ContentsController@destroyPhoto', 'nickname' => "Excluir Conteudo"));
 
-		Route::get('pagina/{modules_id}/novo', array('as' => 'cms-contents-create', 'uses' => 'ContentsController@create', 'nickname' => "Criar Conteudo"));
-		Route::post('pagina/{modules_id}/novo', array('as' => 'cms-contents-create', 'uses' => 'ContentsController@store', 'nickname' => "Criar Conteudo"));
-		Route::get('pagina/{modules_id}/{contents_id}', array('as' => 'cms-contents-show', 'uses' => 'ContentsController@show', 'nickname' => "Visualizar Conteudo"));
-		Route::put('pagina/{modules_id}/{contents_id}', array('as' => 'cms-contents-update', 'uses' => 'ContentsController@update', 'nickname' => "Atualizar Conteudo"));
-		Route::get('pagina/excluir/{modules_id}/{contents_id}', array('as' => 'cms-contents-delete', 'uses' => 'ContentsController@destroy', 'nickname' => "Excluir Conteudo"));
-		Route::get('pagina/status/{modules_id}/{contents_id}/{action}', array('as' => 'cms-contents-status', 'uses' => 'ContentsController@status', 'nickname' => "Status de Conteudo"));
-		Route::get('pagina/excluir/foto/{modules_id}/{contents_id}', array('as' => 'cms-contents-delete-photo', 'uses' => 'ContentsController@destroyPhoto', 'nickname' => "Excluir Conteudo"));
+
+
+		Route::get('pagina/{modules_id}/ver', array('as'  => 'cms-contents-unic', 'uses' => 'ContentsUnicController@index', 'nickname' => "Visualizar Conteudo"));
+		Route::get('pagina/{modules_id}/novo', array('as'  => 'cms-contents-unic-create', 'uses' => 'ContentsUnicController@store', 'nickname' => "Criar Conteudo"));
+		Route::get('pagina/{modules_id}/{contents_id}', array('as'  => 'cms-contents-unic-update', 'uses' => 'ContentsUnicController@update', 'nickname' => "Atualizar Conteudo"));
+
+
+
+
+		//Route::get('pagina/{modules_id}', array('as'  => 'cms-contents', 'uses' => 'ContentsController@index', 'nickname' => "Listar Conteudo"));
+
 
 
 

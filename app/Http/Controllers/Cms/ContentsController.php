@@ -27,7 +27,7 @@ class ContentsController extends CmsController
 
     $contents = Contents::where('modules_id', $modules_id)->orderBy("contents_id", "DESC");
 
-         if (empty($contents)) {
+    if (empty($contents)) {
         abort(404);
     }
     $module = Modules::where('modules_id', $modules_id)->first();
@@ -35,23 +35,23 @@ class ContentsController extends CmsController
 
     if($request->input('title'))
     {
-     $contents->where('title', 'like', '%'.$request->input('title').'%');
- }
+       $contents->where('title', 'like', '%'.$request->input('title').'%');
+   }
 
- if($request->input('status'))
- {
-     $contents->where('status', $request->input('status'));
- }
+   if($request->input('status'))
+   {
+       $contents->where('status', $request->input('status'));
+   }
 
 
- $modules = Modules::where('status', '1')->get();
+   $modules = Modules::where('status', '1')->get();
 
- return view("cms/pages/contents/index", array(
-    "contents" => $contents->paginate(25),
-    "module" => $module,
-    "pages" => $modules,
-));
-}
+   return view("cms/pages/contents/index", array(
+        "contents" => $contents->paginate(25),
+        "module" => $module,
+        "pages" => $modules,
+    ));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -60,15 +60,15 @@ class ContentsController extends CmsController
      */
     public function create(Request $request, $modules_id)
     {
-     $modules = Modules::where('status', '1')->get();
-     $module = Modules::where('modules_id', $modules_id)->first();
-     $categories = Categories::where('status', '1')->where('modules_id', $modules_id)->get();
-     return view("cms/pages/contents/show", array(
+       $modules = Modules::where('status', '1')->get();
+       $module = Modules::where('modules_id', $modules_id)->first();
+       $categories = Categories::where('status', '1')->where('modules_id', $modules_id)->get();
+       return view("cms/pages/contents/show", array(
         "module" => $module,
         "pages" => $modules,
         "categories" => $categories,
     ));
- }
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -118,13 +118,13 @@ class ContentsController extends CmsController
     public function show(Request $request,  $modules_id, $contents_id)
     {   
 
-     $modules = Modules::where('status', '1')->get();
-     $module = Modules::where('modules_id', $modules_id)->first();
-     $categories = Categories::where('status', '1')->where('modules_id', $modules_id)->get();
+       $modules = Modules::where('status', '1')->get();
+       $module = Modules::where('modules_id', $modules_id)->first();
+       $categories = Categories::where('status', '1')->where('modules_id', $modules_id)->get();
 
-     $contents = Contents::find($contents_id);
+       $contents = Contents::find($contents_id);
 
-     if (empty($contents)) {
+       if (empty($contents)) {
         abort(404);
     }
 
@@ -231,7 +231,7 @@ class ContentsController extends CmsController
     public function status(Request $request, $modules_id, $contents_id, $action)
     {
 
-     try {
+       try {
         $contents = Contents::where('contents_id', $contents_id)->where('modules_id', $modules_id)->first();
 
         if(empty($contents)) {
@@ -249,6 +249,6 @@ class ContentsController extends CmsController
         $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
     }
 
-        return redirect(route('cms-contents', $modules_id));
+    return redirect(route('cms-contents', $modules_id));
 }
 }

@@ -2,92 +2,72 @@
 
 @section('content')	
 
-<!-- Breadcrumb -->
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-	<li class="breadcrumb-item ">
-		<a href="{!!route('cms-dashboard')!!}">Home</a>
-	</li>
-	<li class="breadcrumb-item">
-		<a href="{!!route('cms-categories')!!}">Categorias</a>
-	</li>
-	<li class="breadcrumb-item active"> {!!(!isset($categories)) ? 'Novo' : 'Editar'!!}</li>
-</ol>
 
-<div class="container">
-	<!-- Alerts -->
-	@include('cms.layouts._alerts')
-
+<div class="page-breadcrumb">
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="card ">
-				<div class="card-header text-theme">
-					<i class="fa fa-edit"></i>{!!(!isset($categories)) ? 'Novo' : 'Editar'!!} Categorias
-				</div>
+		<div class="col-5 align-self-center">
+			<h4 class="page-title">Categorias</h4>
+		</div>
+		<div class="col-7 align-self-center">
+			<div class="d-flex align-items-center justify-content-end">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-categories')!!}">Categorias</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">{!!(!isset($categories)) ? 'Novo' : 'Editar'!!}</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
 				<div class="card-body">
+					<h4 class="card-title">{!!(!isset($categories)) ? 'Nova' : 'Editar'!!} Categoria</h4>
 					@if(isset($categories))
 					{!! Form::model($categories, ['route' => ['cms-categories-update', $categories->categories_id], 'method' => 'put']) !!}
 					@else
 					{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-categories-create']]) !!}
-					@endif   		    
-					{{csrf_field()}} 
-
-
-
+					@endif   
 					<div class="form-group row">
-						<div class="col-md-12">
-							<label class="form-control-label" for="prependedInput">Modulo/Página</label>
-							<div class="controls">
-								<div class="input-prepend input-group">
-									<span class="input-group-addon"><i class="fa fa-th-list"></i></span>
-
-									<select id="modules_id" name="modules_id" class="form-control select2" data-plugin="select2"  required >	
-										<option value="">Selecione</option>
-										@foreach ($modules as $value)
-										<option value="{!! $value->modules_id !!}" @if(isset($categories)) {{   $categories->modules_id == $value->modules_id  ? "selected" : "" }} @endif >{!! $value->module!!}</option>
-										@endforeach
-									</select>
-
-								</div>							
-							</div>
+						<label for="title" class="col-2 col-form-label">Módulo/Página </label>
+						<div class="col-10">
+							<select id="modules_id" name="modules_id" class="select2 form-control custom-select" data-placeholder="Selecione o Módulo/Página" style="width: 100%; height:36px;"  required >	
+								<option value="">Selecione</option>
+								@foreach ($modules as $value)
+								<option value="{!! $value->modules_id !!}" @if(isset($categories)) {{   $categories->modules_id == $value->modules_id  ? "selected" : "" }} @endif >{!! $value->module!!}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<label for="title" class="col-2 col-form-label">Titulo da Categoria </label>
+						<div class="col-10">
+							{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo da Categoria', 'required' => 'required', 'id' => 'title']) !!}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="subtitle" class="col-2 col-form-label">Sub-Titulo da Categoria </label>
+						<div class="col-10">
+							{!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Sub Titulo da Categoria', 'required' => 'required', 'id' => 'subtitle']) !!}
 						</div>
 					</div>
 
-					<div class="form-group row">
-						<div class="col-md-12">
-							<label class="form-control-label" for="prependedInput">Titulo da Categoria </label>
-							<div class="controls">
-								<div class="input-prepend input-group">
-									<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-									{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo da Categoria ']) !!}
-								</div>							
-							</div>
-						</div>
-					</div> 
-
-					<div class="form-group row">
-						<div class="col-md-12">
-							<label class="form-control-label" for="prependedInput">Sub-Titulo da Categoria </label>
-							<div class="controls">
-								<div class="input-prepend input-group">
-									<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-									{!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Sub-Titulo da Categoria ']) !!}
-								</div>							
-							</div>
-						</div>
-					</div> 
-					<hr>
-					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Salvar</button>
-					</div>
-					{!! Form::close() !!}
-				</div>
-				<!-- end card-body -->
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					{!! Form::close() !!}   	
+				</div>	    
 			</div>
-			<!-- end card -->
 		</div>
-		<!--/.col-->
 	</div>
-
 </div>
+
 
 @endsection

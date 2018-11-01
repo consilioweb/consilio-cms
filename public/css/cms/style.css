@@ -2173,6 +2173,11 @@ pre code {
   box-shadow: transparent;
 }
 
+.form-control::-webkit-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
 .form-control:-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
@@ -14124,6 +14129,7 @@ html[dir="rtl"] .dz-hidden-input {
 .sales {
   position: relative;
   height: 270px;
+  -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
 }
 
@@ -14196,6 +14202,7 @@ html[dir="rtl"] .dz-hidden-input {
 .sales-ratio {
   position: relative;
   height: 212px;
+  -webkit-filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.2));
 }
 
@@ -14216,6 +14223,7 @@ html[dir="rtl"] .dz-hidden-input {
 .sales2 {
   position: relative;
   height: 212px;
+  -webkit-filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.2));
 }
 
@@ -14239,6 +14247,7 @@ html[dir="rtl"] .dz-hidden-input {
 #weather {
   position: relative;
   height: 152px;
+  -webkit-filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.2));
 }
 
@@ -17184,6 +17193,7 @@ File: scss
 .sales {
   position: relative;
   height: 270px;
+  -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
 }
 

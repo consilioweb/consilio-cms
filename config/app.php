@@ -170,6 +170,8 @@ return [
         \Artesaos\Defender\Providers\DefenderServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+
+        Unisharp\Ckeditor\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
