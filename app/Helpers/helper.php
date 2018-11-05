@@ -254,30 +254,30 @@ if(!function_exists('getName')){
 if(!function_exists('anti_sql_injection')){
 
   function anti_sql_injection($sql) {
-        $seg = preg_replace(sql_regcase("/(from|select|insert|delete|where|drop table|show tables|#|\*|--|\\\\)/"), "", $sql); 
-        $seg = trim($seg);
-        $seg = strip_tags($seg); 
-        $seg = addslashes($seg); 
-        return $seg;
-    }
+    $seg = preg_replace(sql_regcase("/(from|select|insert|delete|where|drop table|show tables|#|\*|--|\\\\)/"), "", $sql); 
+    $seg = trim($seg);
+    $seg = strip_tags($seg); 
+    $seg = addslashes($seg); 
+    return $seg;
+}
 }
 
 if(!function_exists('limita_caracteres')){
 
-function limita_caracteres($texto, $limite, $quebra = true) {
-    $tamanho = strlen($texto);
-    if ($tamanho <= $limite) {
-        $novo_texto = $texto;
-    } else {
-        if ($quebra == true) {
-            $novo_texto = trim(substr($texto, 0, $limite)) . '...';
+    function limita_caracteres($texto, $limite, $quebra = true) {
+        $tamanho = strlen($texto);
+        if ($tamanho <= $limite) {
+            $novo_texto = $texto;
         } else {
-            $ultimo_espaco = strrpos(substr($texto, 0, $limite), ' ');
-            $novo_texto = trim(substr($texto, 0, $ultimo_espaco)) . '...';
+            if ($quebra == true) {
+                $novo_texto = trim(substr($texto, 0, $limite)) . '...';
+            } else {
+                $ultimo_espaco = strrpos(substr($texto, 0, $limite), ' ');
+                $novo_texto = trim(substr($texto, 0, $ultimo_espaco)) . '...';
+            }
         }
+        return $novo_texto;
     }
-    return $novo_texto;
-}
 }
 if ( ! function_exists('is_external_url'))
 {
@@ -318,79 +318,79 @@ if ( ! function_exists('img_src'))
         {
             // ARGS: src
             case 'string':
-                $url = $args[0];
+            $url = $args[0];
             break;
 
             // ARGS: width
             case 'integer':
-                $options['width'] = $args[0];
+            $options['width'] = $args[0];
             break;
 
             // ARGS: src, attributes
             case 'string|array':
-                $url     = $args[0];
-                $options = $args[1] + $options;
+            $url     = $args[0];
+            $options = $args[1] + $options;
             break;
 
             // ARGS: src, dynamic
             case 'string|boolean':
-                $url                = $args[0];
-                $options['dynamic'] = $args[1];
+            $url                = $args[0];
+            $options['dynamic'] = $args[1];
             break;
 
             // ARGS: src, width
             case 'string|integer':
-                $url              = $args[0];
-                $options['width'] = $args[1];
+            $url              = $args[0];
+            $options['width'] = $args[1];
             break;
 
             // ARGS: width, height
             case 'integer|integer':
-                $options['width']  = $args[0];
-                $options['height'] = $args[1];
+            $options['width']  = $args[0];
+            $options['height'] = $args[1];
             break;
 
             // ARGS: src, width, dynamic
             case 'string|integer|boolean':
-                $url                = $args[0];
-                $options['width']   = $args[1];
-                $options['dynamic'] = $args[2];
+            $url                = $args[0];
+            $options['width']   = $args[1];
+            $options['dynamic'] = $args[2];
             break;
 
             // ARGS: src, width, height
             case 'string|integer|integer':
-                $url               = $args[0];
-                $options['width']  = $args[1];
-                $options['height'] = $args[2];
+            $url               = $args[0];
+            $options['width']  = $args[1];
+            $options['height'] = $args[2];
             break;
 
             // ARGS: src, width, height, dynamic
             case 'string|integer|integer|boolean':
-                $url                = $args[0];
-                $options['width']   = $args[1];
-                $options['height']  = $args[2];
-                $options['dynamic'] = $args[3];
+            $url                = $args[0];
+            $options['width']   = $args[1];
+            $options['height']  = $args[2];
+            $options['dynamic'] = $args[3];
             break;
 
             // ARGS: src, width, dynamic, thumbnail
             case 'string|integer|boolean|boolean':
-                $url                  = $args[0];
-                $options['width']     = $args[1];
-                $options['dynamic']   = $args[2];
-                $options['thumbnail'] = $args[3];
+            $url                  = $args[0];
+            $options['width']     = $args[1];
+            $options['dynamic']   = $args[2];
+            $options['thumbnail'] = $args[3];
             break;
 
             // ARGS: src, width, height, dynamic, thumbnail
             case 'string|integer|integer|boolean|boolean':
-                $url                  = $args[0];
-                $options['width']     = $args[1];
-                $options['height']    = $args[2];
-                $options['dynamic']   = $args[3];
-                $options['thumbnail'] = $args[4];
+            $url                  = $args[0];
+            $options['width']     = $args[1];
+            $options['height']    = $args[2];
+            $options['dynamic']   = $args[3];
+            $options['thumbnail'] = $args[4];
             break;
 
             default:
-                return;
+            return;
         }
 
         if ($url == "")
@@ -499,35 +499,35 @@ if ( ! function_exists('img_src'))
 
                 // ARGS: name, content
                 case 'string|string':
-                    $content = $args[1];
-                    $close   = TRUE;
+                $content = $args[1];
+                $close   = TRUE;
                 break;
 
                 // ARGS: name, close
                 case 'string|boolean':
-                    $close = $args[1];
+                $close = $args[1];
                 break;
 
                 // ARGS: name, options
                 case 'string|array':
-                    $options = $args[1];
+                $options = $args[1];
                 break;
 
                 // ARGS: name, content, options
                 case 'string|string|array':
-                    $content = $args[1];
-                    $options = $args[2];
-                    $close   = TRUE;
+                $content = $args[1];
+                $options = $args[2];
+                $close   = TRUE;
                 break;
 
                 // ARGS: name, close, options
                 case 'string|boolean|array':
-                    $close   = $args[1];
-                    $options = $args[2];
+                $close   = $args[1];
+                $options = $args[2];
                 break;
 
                 default:
-                    return NULL;
+                return NULL;
             }
 
             $tag = "<{$name}";
@@ -548,7 +548,7 @@ if ( ! function_exists('img_src'))
                 $file = str_replace("/public/", "public/", str_replace(array(url("/"), ""), "", $options['src']));
                 
                 if (file_exists($file)) {
-                    
+
                     list($widthImage, $heightImage, $typeImage, $attrImage) = getimagesize($file);
 
                     $tag .= " width={$widthImage} height={$heightImage}";
@@ -584,125 +584,125 @@ if ( ! function_exists('img_src'))
             {
                 // ARGS: src
                 case 'string':
-                    $src = $args[0];
+                $src = $args[0];
                 break;
 
                 // ARGS: width
                 case 'integer':
-                    $width = $args[0];
+                $width = $args[0];
                 break;
 
                 // ARGS: src, attributes
                 case 'string|array':
-                    $src     = $args[0];
-                    $options = $args[1];
+                $src     = $args[0];
+                $options = $args[1];
                 break;
 
                 // ARGS: src, dynamic
                 case 'string|boolean':
-                    $src     = $args[0];
-                    $dynamic = $args[1];
+                $src     = $args[0];
+                $dynamic = $args[1];
                 break;
 
                 // ARGS: src, width
                 case 'string|integer':
-                    $src   = $args[0];
-                    $width = $args[1];
+                $src   = $args[0];
+                $width = $args[1];
                 break;
 
                 // ARGS: width, height
                 case 'integer|integer':
-                    $width  = $args[0];
-                    $height = $args[1];
+                $width  = $args[0];
+                $height = $args[1];
                 break;
 
                 // ARGS: src, width, dynamic
                 case 'string|integer|boolean':
-                    $src     = $args[0];
-                    $width   = $args[1];
-                    $dynamic = $args[2];
+                $src     = $args[0];
+                $width   = $args[1];
+                $dynamic = $args[2];
                 break;
 
                 // ARGS: src, dynamic, attributes
                 case 'string|boolean|array':
-                    $src     = $args[0];
-                    $dynamic = $args[1];
-                    $options = $args[2];
+                $src     = $args[0];
+                $dynamic = $args[1];
+                $options = $args[2];
                 break;
 
                 // ARGS: src, width, attributes
                 case 'string|integer|array':
-                    $src     = $args[0];
-                    $width   = $args[1];
-                    $options = $args[2];
+                $src     = $args[0];
+                $width   = $args[1];
+                $options = $args[2];
                 break;
 
                 // ARGS: src, width, height
                 case 'string|integer|integer':
                 case 'string|integer|string':
                 case 'string|string|integer':
-                    $src    = $args[0];
-                    $width  = $args[1];
-                    $height = $args[2];
+                $src    = $args[0];
+                $width  = $args[1];
+                $height = $args[2];
                 break;
 
                 // ARGS: src, width, dynamic, attributes
                 case 'string|integer|boolean|array':
-                    $src     = $args[0];
-                    $width   = $args[1];
-                    $dynamic = $args[2];
-                    $options = $args[3];
+                $src     = $args[0];
+                $width   = $args[1];
+                $dynamic = $args[2];
+                $options = $args[3];
                 break;
 
                 // ARGS: src, width, height, attributes
                 case 'string|integer|integer|array':
                 case 'string|integer|string|array':
                 case 'string|string|integer|array':
-                    $src     = $args[0];
-                    $width   = $args[1];
-                    $height  = $args[2];
-                    $options = $args[3];
+                $src     = $args[0];
+                $width   = $args[1];
+                $height  = $args[2];
+                $options = $args[3];
                 break;
 
                 // ARGS: src, width, height, dynamic
                 case 'string|integer|integer|boolean':
                 case 'string|integer|string|boolean':
                 case 'string|string|integer|boolean':
-                    $src     = $args[0];
-                    $width   = $args[1];
-                    $height  = $args[2];
-                    $dynamic = $args[3];
+                $src     = $args[0];
+                $width   = $args[1];
+                $height  = $args[2];
+                $dynamic = $args[3];
                 break;
 
                 // ARGS: src, width, dynamic, thumbnail
                 case 'string|integer|boolean|boolean':
-                    $src       = $args[0];
-                    $width     = $args[1];
-                    $dynamic   = $args[2];
-                    $thumbnail = $args[3];
+                $src       = $args[0];
+                $width     = $args[1];
+                $dynamic   = $args[2];
+                $thumbnail = $args[3];
                 break;
 
                 // ARGS: src, width, height, dynamic, thumbnail
                 case 'string|integer|integer|boolean|boolean':
                 case 'string|integer|string|boolean|boolean':
                 case 'string|string|integer|boolean|boolean':
-                    $src       = $args[0];
-                    $width     = $args[1];
-                    $height    = $args[2];
-                    $dynamic   = $args[3];
-                    $thumbnail = $args[4];
+                $src       = $args[0];
+                $width     = $args[1];
+                $height    = $args[2];
+                $dynamic   = $args[3];
+                $thumbnail = $args[4];
                 break;
 
                 // ARGS: src, width, height, dynamic, thumbnail, attributes
                 case 'string|integer|integer|boolean|boolean|array':
                 case 'string|integer|string|boolean|boolean|array':
                 case 'string|string|integer|boolean|boolean|array':
-                    $src       = $args[0];
-                    $width     = $args[1];
-                    $height    = $args[2];
-                    $dynamic   = $args[3];
-                    $thumbnail = $args[4];
-                    $options   = $args[5];
+                $src       = $args[0];
+                $width     = $args[1];
+                $height    = $args[2];
+                $dynamic   = $args[3];
+                $thumbnail = $args[4];
+                $options   = $args[5];
                 break;
             }
 
@@ -730,3 +730,14 @@ if ( ! function_exists('img_src'))
     }
 }
 
+
+
+
+if( ! function_exists( 'setDate' ) ){
+    function setDate($data){
+        date_default_timezone_set("America/Sao_Paulo");
+        $data = explode('/', $data);
+        $data = $data[2] . '-' . $data[1] . '-' . $data[0];
+        return $data;
+    }
+}

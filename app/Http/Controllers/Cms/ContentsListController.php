@@ -47,11 +47,11 @@ class ContentsListController extends CmsController
    $modules = Modules::where('status', '1')->get();
 
    return view("cms/pages/contents/list", array(
-        "contents" => $contents->paginate(25),
-        "module" => $module,
-        "pages" => $modules,
-    ));
-    }
+    "contents" => $contents->paginate(25),
+    "module" => $module,
+    "pages" => $modules,
+));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -158,12 +158,26 @@ class ContentsListController extends CmsController
             ));
         }
 
+        $initial_date = $request->input('initial_date');
+        $end_date = $request->input('end_date');
+        $publication_date = $request->input('publication_date');
+
         $results = $request->all();
 
         unset($results['image']);
         unset($results['_method']);
         unset($results['_token']);
+        unset($results['initial_date']);
+        unset($results['end_date']);
+        unset($results['publication_date']);
 
+        $includes = array(
+            'initial_date' =>  setDate($initial_date),
+            'end_date' =>  setDate($end_date),
+            'publication_date' =>  setDate($publication_date),
+        );
+
+        $results = array_merge($results, $includes);
 
 
         try {
@@ -174,7 +188,7 @@ class ContentsListController extends CmsController
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }
 
-        return redirect(route('cms-contents', $modules_id )); 
+        return redirect(route('cms-contents-list', $modules_id )); 
     }
 
     /**
@@ -198,7 +212,7 @@ class ContentsListController extends CmsController
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }
 
-        return redirect(route('cms-contents', $modules_id));
+        return redirect(route('cms-contents-list', $modules_id));
     }
 
     public function destroyPhoto(Request $request, $modules_id, $contents_id)
@@ -224,7 +238,7 @@ class ContentsListController extends CmsController
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }
 
-        return redirect(route('cms-contents-show', array($modules_id ,$contents->contents_id))); 
+        return redirect(route('cms-contents-list-show', array($modules_id ,$contents->contents_id))); 
     }
 
     public function status(Request $request, $modules_id, $contents_id, $action)
@@ -248,6 +262,6 @@ class ContentsListController extends CmsController
         $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
     }
 
-    return redirect(route('cms-contents', $modules_id));
+    return redirect(route('cms-contents-list', $modules_id));
 }
 }

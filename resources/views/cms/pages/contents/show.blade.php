@@ -97,13 +97,12 @@
 							<div id="image-holder">				 				
 								@if(!empty($contents->featured_image))
 								<div class="btn-thumb">
-									<a href="{!!route('cms-contents-list-delete-photo',  array($module->modules_id, $contents->contents_id))!!}">
-										<i class="fa fa-times"></i> Apagar Imagem
-									</a>
+									<a style="margin-bottom: 7px;" href="{!!route('cms-contents-list-delete-photo',  array($module->modules_id, $contents->contents_id))!!}" class="btn waves-effect waves-light btn-dark"><i class="icon-trash"></i> Excluir</a>
 								</div>
-								{!!img($contents->featured_image, 850, 850, true, true, array("class" => "cover"))!!}
+								{!!img($contents->featured_image, 400, 400, true, true, array("class" => "cover"))!!}
 								@endif
 							</div> 
+							<small>*A imagem está com tamanho alterado para melhor pré-visualização, será salva com tamanho original.</small>
 						</div>
 					</div>
 					@endif
