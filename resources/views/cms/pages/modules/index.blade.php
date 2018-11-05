@@ -55,7 +55,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card">
+			<div class="card" style="display: none;">
 				<div class="card-body">
 					<h5 class="text-theme">Listagem de Modulos</h5>
 					<div class="table-responsive">
@@ -124,7 +124,20 @@
 								<td>{!!$value->modules_id!!}</td>
 								<td>{!!$value->module!!}</td>
 								<td>{!!$value->type_module()!!}</td>								
-								<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+								<td class="" width="165">
+									@if($value->status == 1)
+									<a title="Status: Ativo" href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+										<i class="ti-check"></i> 
+									</a>
+									@elseif($value->status == 2)
+									<a title="Status: Inativo" href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+										<i class="ti-close"></i> 
+									</a>
+									@endif
+									
+									<button title="Apagar" type="button" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </button>
+									<button title="Editar" type="button" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </button>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

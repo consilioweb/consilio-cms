@@ -59,6 +59,7 @@ elixir((mix) => {
 
 	mix.sass(['resources/assets/sass/cms/pages/contents-unic.scss'], 'public/css/cms/cms-contents-unic.css');
 	mix.sass(['resources/assets/sass/cms/pages/contents-list-create.scss'], 'public/css/cms/cms-contents-list-create.css');
+	mix.sass(['resources/assets/sass/cms/pages/contents-list-show.scss'], 'public/css/cms/cms-contents-list-show.css');
 
 	mix.sass(['resources/assets/sass/cms/pages/categories-create.scss'], 'public/css/cms/cms-categories-create.css');
 
@@ -103,6 +104,12 @@ elixir((mix) => {
 		'resources/assets/js/cms/libs/select2.min.js',
 		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
 		], 'public/js/cms/cms-contents-list-create-libs.js'); 	
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/select2.min.js',
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-contents-list-show-libs.js'); 
+
 	mix.scripts([
 		'resources/assets/js/cms/libs/select2.min.js',
 		], 'public/js/cms/cms-categories-create-libs.js'); 	
@@ -112,8 +119,7 @@ elixir((mix) => {
 
 	mix.scripts([
 		'resources/assets/js/cms/modules/graphs_dashboard.js',
-		], 'public/js/cms/cms-dashboard.js'); 
-	
+		], 'public/js/cms/cms-dashboard.js'); 	
 	mix.scripts([
 		'resources/assets/js/cms/modules/preview.file.js',
 		'resources/assets/js/cms/modules/ck.editor.js',
@@ -124,6 +130,12 @@ elixir((mix) => {
 		'resources/assets/js/cms/modules/select2.js',
 		'resources/assets/js/cms/modules/datapicker.js',
 		], 'public/js/cms/cms-contents-list-create.js'); 
+	mix.scripts([
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/ck.editor.js',
+		'resources/assets/js/cms/modules/select2.js',
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-contents-list-show.js'); 
 
 	mix.scripts([
 		'resources/assets/js/cms/modules/select2.js',

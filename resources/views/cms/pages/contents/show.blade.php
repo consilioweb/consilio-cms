@@ -15,7 +15,10 @@
 						<li class="breadcrumb-item">
 							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">{!!$module->module!!} {!!(!isset($contents)) ? 'Novo' : 'Editar'!!}</li>
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-contents-list', $module->modules_id)!!}">{!!$module->module!!} </a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">{!!(!isset($contents)) ? 'Novo' : 'Editar'!!}</li>
 					</ol>
 				</nav>
 			</div>
@@ -24,21 +27,20 @@
 </div>
 
 <div class="container-fluid">
-	<div class="row">
-		<!-- Alerts -->
-		@include('cms.layouts._alerts')
 
+	<!-- Alerts -->
+	@include('cms.layouts._alerts')
+
+	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">{!!(!isset($contents)) ? 'Novo' : 'Editar'!!} {!!$module->module!!}</h4>
 					@if(isset($contents))
-					{!! Form::model($contents, ['route' => ['cms-contents-unic-update', $contents->contents_id], 'method' => 'put']) !!}
+					{!! Form::model($contents, ['route' => ['cms-contents-list-update', $module->modules_id, $contents->contents_id], 'method' => 'put', 'files' => true]) !!}
 					@else
-					{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-contents-unic-create', $module->modules_id]]) !!}
-					@endif
-
-
+					{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-contents-list-create', $module->modules_id], 'files' => true]) !!}
+					@endif	
 
 					@if(!empty($module->featured))
 					<div class="form-group m-t-40 row">
@@ -91,15 +93,15 @@
 					<div class="form-group row">
 						<label for="featured_image" class="col-2 col-form-label">{!!$module->featured_image!!} </label>
 						<div class="col-10 border-preview-img">
-							{!! Form::file('featured_image', ['class' => 'form-control input-file', 'id' => 'featured_image']) !!}
-							<div id="image-holder">								
+							{!! Form::file('image', ['class' => 'form-control input-file', 'id' => 'featured_image']) !!}
+							<div id="image-holder">				 				
 								@if(!empty($contents->featured_image))
 								<div class="btn-thumb">
-									<a href="{!!route('cms-contents-unic-delete-photo',  array($module->modules_id, $contents->contents_id))!!}">
+									<a href="{!!route('cms-contents-list-delete-photo',  array($module->modules_id, $contents->contents_id))!!}">
 										<i class="fa fa-times"></i> Apagar Imagem
 									</a>
 								</div>
-								{!!img($contents->featured_image, 350, 200, true, true, array("class" => "cover"))!!}
+								{!!img($contents->featured_image, 850, 850, true, true, array("class" => "cover"))!!}
 								@endif
 							</div> 
 						</div>

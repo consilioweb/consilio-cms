@@ -64,7 +64,6 @@ class ContentsListController extends CmsController
        $module = Modules::where('modules_id', $modules_id)->first();
        $categories = Categories::where('status', '1')->where('modules_id', $modules_id)->get();
 
-       var_dump($categories);die;
        return view("cms/pages/contents/show", array(
         "module" => $module,
         "pages" => $modules,
@@ -80,8 +79,6 @@ class ContentsListController extends CmsController
      */
     public function store(Request $request, $modules_id)
     {
-
-
 
         if($request->hasFile('image')) {
 
@@ -104,10 +101,10 @@ class ContentsListController extends CmsController
         try {
             $contents = Contents::create($request->all());
             $request->session()->flash('alert', array('code'=> 'success', 'text'  => "Registro Cadastrado com sucesso!"));
-            return redirect(route('cms-contents-show', array($modules_id ,$contents->contents_id))); 
+            return redirect(route('cms-contents-list-show', array($modules_id ,$contents->contents_id))); 
         } catch (Exception $e) {
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
-            return redirect(route('cms-contents-show', array($modules_id ,$contents->contents_id))); 
+            return redirect(route('cms-contents-list-show', array($modules_id ,$contents->contents_id))); 
         }        
     }
 
