@@ -1,7 +1,5 @@
 @extends('cms.layouts._default')
-
 @section('content')	
-
 
 <div class="page-breadcrumb">
 	<div class="row"> 
@@ -46,7 +44,7 @@
 					<div class="form-group m-t-40 row">
 						<span  class="col-2 "></span>
 						<div class="col-10">
-							<div class="custom-control custom-checkbox mr-sm-2">
+							<div class="custom-control custom-checkbox mr-sm-2">  
 								{!! Form::checkbox('featured', '1', isset($contents->featured) ? true : false, ['class' => 'custom-control-input', 'id' => 'featured']) !!}
 								{{-- <input type="checkbox" class="custom-control-input" id="check_1" value="check"> --}}
 								<label class="custom-control-label" for="featured">{!!$module->featured!!}</label>

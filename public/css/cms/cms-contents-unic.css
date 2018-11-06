@@ -247,6 +247,10 @@
   width: 100% !important;
 }
 
+.border-preview-img img.cover {
+  width: auto !important;
+}
+
 .border-preview-img #image-holder {
   width: 100%;
   height: auto;

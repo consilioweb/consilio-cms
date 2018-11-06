@@ -32,11 +32,11 @@
 			@include('cms.layouts._alerts')
 			<div class="card">
 				<div class="card-body">
-					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}
+					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-contents-list', $module->modules_id]]) !!}
 					<div class="row">
 
 						<div class="form-group col-sm-6">
-							{!!Form::text('module', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
+							{!!Form::text('title', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
 						</div>
 
 						<div class="form-group col-sm-6">

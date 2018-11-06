@@ -28,12 +28,10 @@ class CategoriesController extends CmsController
 		}
 
 
-		$pages = Modules::where('status', '1')->get();
 
 
 		return view("cms/pages/categories/index", array(
 			"categories" => $categories->paginate(50),
-			"pages" => $pages,
 		));
 	}
 

@@ -32,7 +32,6 @@ class GalleryController extends CmsController
 		return view("cms/pages/gallery/index", array(
 			"gallery" => $gallery->paginate(50),
 			"module" => $module,
-			"pages" => $pages,
 			"content" => $content,
 			"total" => $total,
 		));

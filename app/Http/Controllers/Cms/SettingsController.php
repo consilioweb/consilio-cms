@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Cms;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\CmsController;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +17,9 @@ use App\Model\States;
 use App\Model\Cities;
 use App\Model\Modules;
 
-class SettingsController extends Controller
+
+
+class SettingsController extends CmsController
 {
 	use AuthenticatesUsers;
 

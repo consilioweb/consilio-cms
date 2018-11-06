@@ -49,7 +49,6 @@ class ContentsListController extends CmsController
    return view("cms/pages/contents/list", array(
     "contents" => $contents->paginate(25),
     "module" => $module,
-    "pages" => $modules,
 ));
 }
 
@@ -66,7 +65,6 @@ class ContentsListController extends CmsController
 
        return view("cms/pages/contents/show", array(
         "module" => $module,
-        "pages" => $modules,
         "categories" => $categories,
     ));
    }
@@ -130,7 +128,6 @@ class ContentsListController extends CmsController
     return view("cms/pages/contents/show", array(
         "contents" => $contents,
         "module" => $module,
-        "pages" => $modules,
         "categories" => $categories,
     ));
 }
@@ -144,7 +141,6 @@ class ContentsListController extends CmsController
      */
     public function update(Request $request, $modules_id, $contents_id)
     {
-
 
         if($request->hasFile('image')) {
 
@@ -171,13 +167,33 @@ class ContentsListController extends CmsController
         unset($results['end_date']);
         unset($results['publication_date']);
 
+
+        $checks = array();
+
+        if(!$request->input('featured')){
+            $checks['featured'] = null;
+        }
+
+        if(!$request->input('check_1')){
+            $checks['check_1'] = null;
+        }
+
+        if(!$request->input('check_2')){
+            $checks['check_2'] = null;
+        }
+
+        if(!$request->input('check_3')){
+            $checks['check_3'] = null;
+        }
+
+
         $includes = array(
             'initial_date' =>  setDate($initial_date),
             'end_date' =>  setDate($end_date),
             'publication_date' =>  setDate($publication_date),
         );
 
-        $results = array_merge($results, $includes);
+        $results = array_merge($results, $includes, $checks);
 
 
         try {

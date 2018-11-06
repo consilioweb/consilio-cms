@@ -19,10 +19,10 @@ class Contents extends Model
 		
 		switch ($this->status) {
 			case '1':
-			return '<i class="fa fa-check"></i>';
+			return 'Ativo';
 			break;
 			case '2':
-			return '<i  class="fa fa-times"></i>';
+			return 'Inativo';
 			break;
 		}
 	}
@@ -80,9 +80,54 @@ class Contents extends Model
 	}
 
 
-    public function gallery()
-    {
-        return $this->hasMany('App\Model\Gallery', 'contents_id', 'contents_id');
-    }
+	public function gallery()
+	{
+		return $this->hasMany('App\Model\Gallery', 'contents_id', 'contents_id');
+	}
+
+	public function featured() {
+		
+		switch ($this->featured) {
+			case '1':
+			return 'Ativo';
+			break;
+			case '2':
+			return 'Inativo';
+			break;
+		}
+	}
+	public function check_1() {
+		
+		switch ($this->check_1) {
+			case '1':
+			return 'Ativo';
+			break;
+			case '2':
+			return 'Inativo';
+			break;
+		}
+	}
+	public function check_2() {
+		
+		switch ($this->check_2) {
+			case '1':
+			return 'Ativo';
+			break;
+			case '2':
+			return 'Inativo';
+			break;
+		}
+	}
+	public function check_3() {
+		
+		switch ($this->check_3) {
+			case '1':
+			return 'Ativo';
+			break;
+			case '2':
+			return 'Inativo';
+			break;
+		}
+	}
 
 }

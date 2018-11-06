@@ -14,3 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::post('states/{code}',"Api\StatesController@show");
+
+Route::get('upload/images', "Api\FileUploadController@image");
