@@ -10,9 +10,10 @@ use App\Http\Requests;
 use App\Model\Modules;
 use App\Model\Contents;
 use App\Model\Gallery;
-use App\Model\Definitions;
 
 #
+
+use App\Model\Definitions;
 
 class GalleryController extends CmsController
 {
@@ -21,20 +22,59 @@ class GalleryController extends CmsController
 	{
 
 
-		$gallery = Gallery::where('contents_id', $contents_id)->where('modules_id', $modules_id)->orderBy("gallery_id", "DESC");
-		$total = $gallery->count();
-		$module = Modules::where('modules_id', $modules_id)->first();
-		$content = Contents::where('contents_id', $contents_id)->where('modules_id', $modules_id)->first();
+		$gallery 	= Gallery::where('contents_id', $contents_id)->where('modules_id', $modules_id)->orderBy("gallery_id", "DESC");
 
-
-		$pages = Modules::where('status', '1')->get();
+		$module 	= Modules::where('modules_id', $modules_id)->first();
+		$content 	= Contents::where('contents_id', $contents_id)->first();
 
 		return view("cms/pages/gallery/index", array(
-			"gallery" => $gallery->paginate(50),
+			"gallery" => $gallery->get(),
 			"module" => $module,
 			"content" => $content,
-			"total" => $total,
 		));
+
+	}
+
+	public function show(Request $request, $modules_id, $contents_id)
+	{
+
+		$file_list = array();
+		//$destinationPath = public_path('storage/files/');
+		$caminho = public_path('storage/files/');
+
+		$destinationPath = "/cms-default/public/storage/files/";
+
+		$gallery 	= Gallery::where('type', '1')->where('contents_id', $contents_id)->where('modules_id', $modules_id)->orderBy("gallery_id", "DESC")->get();
+
+
+		foreach ($gallery as $value) {
+			$file_list[] = array('name'=>$value->file,'path'=>$destinationPath.$value->file, 'size' => filesize($caminho . $value->file));
+		}
+
+		return response()->json($file_list);
+	}
+
+	public function remove(Request $request, $modules_id, $contents_id, $image)
+	{
+
+		try {
+			$gallery = Gallery::where('contents_id', $contents_id)->where('modules_id', $modules_id)->where('file', $image)->first();
+
+			if(empty($gallery)) {
+				return response()->json(["return" => "error", "message" => "não encontado"]);
+			}
+
+			$destinationPath = public_path('storage/files/');
+
+			if(file_exists($destinationPath.$image)){
+				unlink($destinationPath.$image);
+				$gallery->delete();
+				return response()->json(["return" => "success", "message" => "excluido com sucesso!"]);
+			}
+
+		} catch (Exception $e) {
+			return response()->json(["return" => "error", "message" => $e]);
+		}
 
 	}
 
@@ -43,107 +83,49 @@ class GalleryController extends CmsController
 		try {
 
 			$definitions = Definitions::first();
+			$destinationPath = public_path('storage/files/');
 
-			if($request->hasFile('images')){
-				$files = $request->file('images');
+			if($request->hasFile('file')){
+
+				$filename = $request->file('file');
 
 				$extBanco = $definitions->ext_photos;
 				$explodeExtencao = explode(',', $extBanco);
 				$exOk = (array) $explodeExtencao;
 				$allowedExts = $exOk;
 
-				$destinationPath = public_path('storage/files/');
 
-				$w=0;
-				foreach ($files as $file) {
-
-
+				$w = 0;
+				foreach ($filename as $file) {
 					$ext = str_replace('.', '', strrchr($file->getClientOriginalName(), '.'));
-
 					if (in_array($ext, $allowedExts)) {
 
-						$new_name = md5(date("Y.m.d-H.i.s") . "-" . $w) . "." . $ext;
-
+						
+						$new_name = md5(date("Y.m.d-h:i:s")) . $w . "." . $ext;
 						$file->move($destinationPath, $new_name);
 
+						Gallery::create([
+							'modules_id' 		=> $modules_id,
+							'contents_id' 		=> $contents_id,
+							'file' 				=> $new_name,
+							'type'				=> 1,
+							'extension'			=> $ext,
+							'status' 			=> 1
+						]);
 
-					}else{
-						$request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Extenção Não Permetida!'));
-						return redirect(route('cms-gallery', array($modules_id ,$contents_id))); 
-						die;
 					}
-
-					Gallery::create([
-						'modules_id' 		=> $modules_id,
-						'contents_id' 		=> $contents_id,
-						'file' 				=> $new_name,
-						'type'				=> $ext,
-						'status' 			=> 1
-					]);
-
 					$w++;
 				}
+
+				return response()->json(["return" => "success", "message" => "Upload concluido"]);
+
+			}else{
+				return response()->json(["return" => "error", "message" => "Extensão não permetida"]);
 			}
-			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
-			return redirect(route('cms-gallery', array($modules_id ,$contents_id))); 
 
 		} catch (Exception $e) {
-			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
+			return response()->json(["return" => "error", "message" => $e]);
 		}
-		
-	}
-
-	public function status(Request $request, $modules_id, $contents_id, $gallery_id)
-	{
-
-		try {
-
-			$gallery = Gallery::where('contents_id', $contents_id)
-			->where('modules_id', $modules_id)
-			->where("gallery_id", $gallery_id)
-			->first();
-
-			if($gallery->status == 1){
-				$gallery->update(['status' => 2]);			
-			}else{			
-				$gallery->update(['status' => 1]);			
-			}
-			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
-
-		} catch (Exception $e) {
-			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
-		}
-		
-		return redirect(route('cms-gallery', array($modules_id ,$contents_id))); 
 
 	}
-
-	public function destroy(Request $request, $modules_id, $contents_id, $gallery_id)
-	{
-		try {
-
-			$gallery = Gallery::where('contents_id', $contents_id)
-			->where('modules_id', $modules_id)
-			->where("gallery_id", $gallery_id)
-			->first();
-
-
-
-			$destinationPath = public_path('storage/files/');
-
-			if(file_exists($destinationPath.$gallery->file)){
-				unlink($destinationPath.$gallery->file);
-
-				$gallery->delete();
-			}
-			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
-
-		} catch (Exception $e) {
-			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
-		}
-		
-		return redirect(route('cms-gallery', array($modules_id ,$contents_id))); 
-
-	}
-
 }

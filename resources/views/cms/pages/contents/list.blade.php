@@ -108,14 +108,14 @@
 									@if(!empty($module->image_gallery))							
 									<td>
 										<a href="{!!route('cms-gallery',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
-											<i class="fa fa-photo" aria-hidden="true"></i>
+											<i class="mdi mdi-image-multiple" aria-hidden="true"></i>
 										</a>
 									</td>
 									@endif
 
 									@if(!empty($module->file_gallery))									
 									<td>
-										<a href="{!!route('cms-contents-list-update',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
+										<a href="{!!route('cms-archives',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
 											<i class="fa fa-file-o" aria-hidden="true"></i>
 										</a>
 									</td>
@@ -199,13 +199,13 @@
 
 								@if(!empty($module->image_gallery))
 								<td>
-									<a title="Fotos" href="{!!route('cms-gallery',  array($module->modules_id, $value->contents_id))!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-camera"></i> Galeria</a>
+									<a title="Imagens" href="{!!route('cms-gallery',  array($module->modules_id, $value->contents_id))!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-camera"></i> Galeria</a>
 								</td>
 								@endif
 
 								@if(empty($module->file_gallery))
 								<td>
-									<a title="Fotos" href="{!!route('cms-gallery',  array($module->modules_id, $value->contents_id))!!}" class="btn waves-effect waves-light btn-light"> <i class=" ti-files"></i> Arquivos</a>
+									<a title="Arquivos" href="{!!route('cms-archives',  array($module->modules_id, $value->contents_id))!!}" class="btn waves-effect waves-light btn-light"> <i class=" ti-files"></i> Arquivos</a>
 								</td>
 								@endif
 

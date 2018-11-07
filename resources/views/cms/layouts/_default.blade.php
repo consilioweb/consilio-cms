@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="{{asset('public'.elixir('css/cms/'.Route::currentRouteName().'.css'))}}">  
     @endif
 
+
+    <!-- Custom Css -->
+    <link id="pageStyle" rel="stylesheet" href="{{asset('public')}}/css/custom.min.css">
+
 </head>
 
 

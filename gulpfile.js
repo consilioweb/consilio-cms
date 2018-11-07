@@ -76,6 +76,14 @@ elixir((mix) => {
 	/*------------------------------------------------------------------------*/
 
 
+	mix.sass(['resources/assets/sass/cms/pages/gallery.scss'], 'public/css/cms/cms-gallery.css');
+	/*------------------------------------------------------------------------*/
+
+
+	mix.sass(['resources/assets/sass/cms/pages/archives.scss'], 'public/css/cms/cms-archives.css');
+	/*------------------------------------------------------------------------*/
+ 
+
 	/* JS Libs Cms */
 	mix.scripts([
 		'resources/assets/js/libs/jquery/dist/jquery.min.js',
@@ -152,6 +160,22 @@ elixir((mix) => {
 	/*------------------------------------------------------------------------*/	
 
 
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/dropzone.js',
+		'resources/assets/js/cms/libs/sweetalert2.js',
+		], 'public/js/cms/cms-gallery-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/dropzone.js',
+		'resources/assets/js/cms/libs/sweetalert2.js',
+		], 'public/js/cms/cms-archives-libs.js'); 
+	/*------------------------------------------------------------------------*/	
+
+
 	//
 	/* MODULES */
 	//
@@ -207,6 +231,20 @@ elixir((mix) => {
 
 
 
+	mix.scripts([
+		'resources/assets/js/cms/modules/dropzone.js',
+		], 'public/js/cms/cms-gallery.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/dropzone.js',
+		], 'public/js/cms/cms-archives.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
 
 	/*------------------------------------------------------------------------*/
 	/* ERRORS */
@@ -228,8 +266,8 @@ elixir((mix) => {
 	/* FILES */
 	/*------------------------------------------------------------------------*/
 
-	mix.copy('resources/assets/fonts', 'public/fonts');
-	mix.copy('resources/assets/img', 'public/img');
+	//mix.copy('resources/assets/fonts', 'public/fonts');
+	//mix.copy('resources/assets/img', 'public/img');
 
 
 });

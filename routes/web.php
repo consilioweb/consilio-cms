@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::get('gerenciar/status/{modules_id}/{contents_id}/{action}', array('as' 	=> 'cms-contents-list-status', 'uses' => 'ContentsListController@status', 'nickname' => "Status de Conteudo"));
 		Route::get('gerenciar/excluir/foto/{modules_id}/{contents_id}', array('as' 		=> 'cms-contents-list-delete-photo', 'uses' => 'ContentsListController@destroyPhoto', 'nickname' => "Excluir Imagem"));
 
+
 		Route::get('pagina/{modules_id}/ver', array('as'  						=> 'cms-contents-unic', 'uses' 				=> 'ContentsUnicController@index', 'nickname' => "Visualizar Conteudo"));
 		Route::post('pagina/{modules_id}/novo', array('as'  					=> 'cms-contents-unic-create', 'uses' 		=> 'ContentsUnicController@store', 'nickname' => "Criar Conteudo"));
 		Route::put('pagina/{modules_id}/atualizar', array('as'  				=> 'cms-contents-unic-update', 'uses' 		=> 'ContentsUnicController@update', 'nickname' => "Atualizar Conteudo"));
@@ -68,9 +69,23 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 
 
 
+		/* GALERIA DE ARQUIVOS E IMAGENS */
+		Route::get('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery', 'uses' => 'GalleryController@index', 'nickname' => "Listar Imagens"));
+		Route::post('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery-upload', 'uses' => 'GalleryController@upload', 'nickname' => "Enviar Imagens"));
+		Route::get('galeria/{modules_id}/{contents_id}/show', array('as'  => 'cms-gallery-list', 'uses' => 'GalleryController@show', 'nickname' => "Enviar Imagens"));
+		Route::get('galeria/{modules_id}/{contents_id}/remove/{image}', array('as'  => 'cms-gallery-remove', 'uses' => 'GalleryController@remove', 'nickname' => "Remover Imagen"));
 
-		Route::get('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery', 'uses' => 'GalleryController@index', 'nickname' => "Listar Galeria"));
-		Route::post('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery-upload', 'uses' => 'GalleryController@upload', 'nickname' => "Listar Galeria"));
+		Route::get('arquivos/{modules_id}/{contents_id}', array('as'  => 'cms-archives', 'uses' => 'ArchivesController@index', 'nickname' => "Listar Arquivos"));
+		Route::post('arquivos/{modules_id}/{contents_id}', array('as'  => 'cms-archives-upload', 'uses' => 'ArchivesController@upload', 'nickname' => "Enviar Arquivos"));
+		Route::get('arquivos/{modules_id}/{contents_id}/show', array('as'  => 'cms-archives-list', 'uses' => 'ArchivesController@show', 'nickname' => "Enviar Arquivos"));
+		Route::get('arquivos/{modules_id}/{contents_id}/remove/{image}', array('as'  => 'cms-archives-remove', 'uses' => 'ArchivesController@remove', 'nickname' => "Remover Arquivos"));
+
+		
+
+		
+
+
+
 		Route::get('galeria/{modules_id}/{contents_id}/{gallery_id}', array('as'  => 'cms-gallery-status', 'uses' => 'GalleryController@status', 'nickname' => "Status Galeria"));
 		Route::get('galeria/{modules_id}/{contents_id}/{gallery_id}/excluir', array('as'  => 'cms-gallery-delete', 'uses' => 'GalleryController@destroy', 'nickname' => "Excluir Galeria"));
 

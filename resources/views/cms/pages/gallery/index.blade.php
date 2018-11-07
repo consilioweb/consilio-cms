@@ -1,38 +1,61 @@
 @extends('cms.layouts._default')
-
 @section('content')	
-<div class="page-wrapper">
-	<div class="page-breadcrumb">
-		<div class="row">
-			<div class="col-5 align-self-center">
-				<h4 class="page-title">Starter Page</h4>
-			</div>
-			<div class="col-7 align-self-center">
-				<div class="d-flex align-items-center justify-content-end">
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								<a href="#">Home</a>
-							</li>
-							<li class="breadcrumb-item active" aria-current="page">Starter Page</li>
-						</ol>
-					</nav>
-				</div>
+
+
+<div class="page-breadcrumb">
+	<div class="row"> 
+		<div class="col-5 align-self-center">
+			<h4 class="page-title">Galeria de Fotos</h4>
+		</div>
+		<div class="col-7 align-self-center">
+			<div class="d-flex align-items-center justify-content-end">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-contents-list', $module->modules_id)!!}">{!!$module->module!!} </a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-contents-list-show', array( $module->modules_id, $content->contents_id))!!}">
+								{!!limita_caracteres($content->title, 15)!!}
+							</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Galeria de Fotos</li>
+					</ol>
+				</nav>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-body">
-						This is some text within a card block.
+</div>
+<div class="container-fluid">
+
+	<!-- Alerts -->
+	@include('cms.layouts._alerts')
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<!-- Gallery -->
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Galeria de Fotos</h4>
+					<h6 class="card-subtitle">Envie arquivos de fotos apenas com as seguintes extenções: <code>{!!$definitions->ext_photos!!}</code></h6>
+
+					{!! Form::open(['id' => 'files-upload', 'method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-gallery-upload', $module->modules_id, $content->contents_id], 'files' => true]) !!}
+					<div class="dz-message" data-dz-message><span>Clique ou Arraste aqui as Imagens</span></div>
+					<div class="fallback">
+						<input name="file" type="file" multiple />
 					</div>
+					{!! Form::close() !!} 
+					<input type="hidden" name="app_redirect" id="app_redirect" value="galeria">
+					<input type="hidden" name="app_modules" id="app_modules" value="{!!$module->modules_id!!}">
+					<input type="hidden" name="app_contents" id="app_contents" value="{!!$content->contents_id!!}">
 				</div>
 			</div>
 		</div>
 	</div>
-	 @include('cms.layouts._footer')
 </div>
 
 @endsection 

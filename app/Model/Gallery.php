@@ -8,7 +8,7 @@ class Gallery extends Model
 {
     protected $table      = "gallery";
 	protected $primaryKey = 'gallery_id';
-	protected $fillable   = ['modules_id','contents_id', 'title', 'legend','file', 'type', 'insert_users_id', 'update_users_id',  'status', 'created_at', 'updated_at'];
+	protected $fillable   = ['modules_id','contents_id', 'title', 'legend','file', 'type', 'extension', 'insert_users_id', 'update_users_id',  'status', 'created_at', 'updated_at'];
 
 	public function status() {
 		
@@ -21,6 +21,18 @@ class Gallery extends Model
 			break;
 		}
 	}
+	public function type() {
+		
+		switch ($this->type) {
+			case '1':
+				return "Imagens";
+			break;
+			case '2':
+				return "Arquivos";
+			break;
+		}
+	}
+
 
 	public function module()
     {

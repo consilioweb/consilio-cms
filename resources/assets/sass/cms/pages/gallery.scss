@@ -1,0 +1,27 @@
+@import "../_libs/dropzone.scss";
+@import "../_libs/sweetalert2.scss";
+
+
+.container{
+  margin: 0 auto; 
+  width: 50%;
+}
+
+.content{
+  padding: 5px; 
+  margin: 0 auto;
+}
+.content span{
+  width: 250px;
+}
+
+.dz-message{
+  text-align: center;
+  font-size: 28px;
+}
+
+.dz-preview .dz-image img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
