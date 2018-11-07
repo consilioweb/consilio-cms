@@ -29,12 +29,12 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 	Route::group(['middleware' => 'auth:cms'], function() {
 		Route::get('/', array('as' => 'cms-dashboard', 'uses' => 'DashboardController@index', 'nickname' => "Dashboard do CMS"));	
 
-		/* Páginas */
 		Route::get('/configuracoes/sistema', array('as' => 'cms-settings-system', 'uses' => 'SettingsController@system', 'nickname' => "Configurações do CMS"));	
 		Route::post('/configuracoes/sistema', array('as' => 'cms-settings-system-update', 'uses' => 'SettingsController@systemUpdate', 'nickname' => "Configurações do CMS"));	
 
 		Route::get('/configuracoes/site', array('as' => 'cms-settings-site', 'uses' => 'SettingsController@site', 'nickname' => "Configurações do Site"));	
 		Route::post('/configuracoes/site', array('as' => 'cms-settings-site-update', 'uses' => 'SettingsController@siteUpdate', 'nickname' => "Configurações do Site"));	
+
 
 
 		Route::get('modulos', array('as'                              => 'cms-modules', 'uses' => 'ModulesController@index', 'nickname' => "Listar Modulos"));
@@ -45,8 +45,6 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::get('modulos/excluir/{id}', array('as'                 => 'cms-modules-delete', 'uses' => 'ModulesController@destroy', 'nickname' => "Excluir Modulos"));
 		Route::get('modulos/status/{id}/{action}', array('as'         => 'cms-modules-status', 'uses' => 'ModulesController@status', 'nickname' => "Status de Modulos"));
 
-
-
 		Route::get('gerenciar/{modules_id}', array('as'  						=> 'cms-contents-list', 'uses' => 'ContentsListController@index', 'nickname' => "Listar Conteudo"));
 		Route::get('gerenciar/{modules_id}/novo', array('as' 					=> 'cms-contents-list-create', 'uses' => 'ContentsListController@create', 'nickname' => "Criar Conteudo"));
 		Route::post('gerenciar/{modules_id}/novo', array('as' 					=> 'cms-contents-list-create', 'uses' => 'ContentsListController@store', 'nickname' => "Salvar Conteudo"));		
@@ -56,20 +54,11 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::get('gerenciar/status/{modules_id}/{contents_id}/{action}', array('as' 	=> 'cms-contents-list-status', 'uses' => 'ContentsListController@status', 'nickname' => "Status de Conteudo"));
 		Route::get('gerenciar/excluir/foto/{modules_id}/{contents_id}', array('as' 		=> 'cms-contents-list-delete-photo', 'uses' => 'ContentsListController@destroyPhoto', 'nickname' => "Excluir Imagem"));
 
-
 		Route::get('pagina/{modules_id}/ver', array('as'  						=> 'cms-contents-unic', 'uses' 				=> 'ContentsUnicController@index', 'nickname' => "Visualizar Conteudo"));
 		Route::post('pagina/{modules_id}/novo', array('as'  					=> 'cms-contents-unic-create', 'uses' 		=> 'ContentsUnicController@store', 'nickname' => "Criar Conteudo"));
 		Route::put('pagina/{modules_id}/atualizar', array('as'  				=> 'cms-contents-unic-update', 'uses' 		=> 'ContentsUnicController@update', 'nickname' => "Atualizar Conteudo"));
 		Route::get('pagina/excluir/foto/{modules_id}/{photo}', array('as' 		=> 'cms-contents-unic-delete-photo', 'uses' => 'ContentsUnicController@destroyPhoto', 'nickname' => "Excluir Imagem"));
 
-
-
-
-		//Route::get('pagina/{modules_id}', array('as'  => 'cms-contents', 'uses' => 'ContentsController@index', 'nickname' => "Listar Conteudo"));
-
-
-
-		/* GALERIA DE ARQUIVOS E IMAGENS */
 		Route::get('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery', 'uses' => 'GalleryController@index', 'nickname' => "Listar Imagens"));
 		Route::post('galeria/{modules_id}/{contents_id}', array('as'  => 'cms-gallery-upload', 'uses' => 'GalleryController@upload', 'nickname' => "Enviar Imagens"));
 		Route::get('galeria/{modules_id}/{contents_id}/show', array('as'  => 'cms-gallery-list', 'uses' => 'GalleryController@show', 'nickname' => "Enviar Imagens"));
@@ -79,17 +68,6 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::post('arquivos/{modules_id}/{contents_id}', array('as'  => 'cms-archives-upload', 'uses' => 'ArchivesController@upload', 'nickname' => "Enviar Arquivos"));
 		Route::get('arquivos/{modules_id}/{contents_id}/show', array('as'  => 'cms-archives-list', 'uses' => 'ArchivesController@show', 'nickname' => "Enviar Arquivos"));
 		Route::get('arquivos/{modules_id}/{contents_id}/remove/{image}', array('as'  => 'cms-archives-remove', 'uses' => 'ArchivesController@remove', 'nickname' => "Remover Arquivos"));
-
-		
-
-		
-
-
-
-		Route::get('galeria/{modules_id}/{contents_id}/{gallery_id}', array('as'  => 'cms-gallery-status', 'uses' => 'GalleryController@status', 'nickname' => "Status Galeria"));
-		Route::get('galeria/{modules_id}/{contents_id}/{gallery_id}/excluir', array('as'  => 'cms-gallery-delete', 'uses' => 'GalleryController@destroy', 'nickname' => "Excluir Galeria"));
-
-
 
 		Route::get('categorias', array('as' => 'cms-categories', 'uses' => 'CategoriesController@index', 'nickname' => "Listar Categorias"));
 		Route::get('categorias/novo', array('as' => 'cms-categories-create', 'uses' => 'CategoriesController@create', 'nickname' => "Criar Categorias"));
@@ -106,6 +84,7 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::put('usuarios/{id}', array('as' => 'cms-users-update', 'uses' => 'UsersController@update', 'nickname' => "Atualizar Usuários"));
 		Route::get('usuarios/excluir/{id}', array('as' => 'cms-users-delete', 'uses' => 'UsersController@destroy', 'nickname' => "Excluir Usuários"));
 		Route::get('usuarios/status/{id}/{action}', array('as' => 'cms-users-status', 'uses' => 'UsersController@status', 'nickname' => "Status de Usuários"));
+		Route::get('usuarios/foto/{id}/{action}', array('as' => 'cms-users-photos', 'uses' => 'UsersController@destroyPhoto', 'nickname' => "Apagar Foto de Usuários"));
 
 
 		Route::get('plugins/anuncios', array('as' => 'cms-adverts', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Anuncios"));

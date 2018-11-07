@@ -26,10 +26,12 @@
 
 
 <div class="container-fluid">
+	<!-- Alerts -->
+	@include('cms.layouts._alerts')
+
 	<div class="row">
 		<div class="col-md-12">
-			<!-- Alerts -->
-			@include('cms.layouts._alerts')
+
 			<div class="card">
 				<div class="card-body">
 					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}

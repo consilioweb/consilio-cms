@@ -1,0 +1,24 @@
+@import "../_libs/bootstrap-datepicker.min.scss";
+@import "../_libs/select2.min.scss";
+
+.border-preview-img{
+	img{
+		width: 100% !important;
+	}
+
+	img.cover{
+		width: auto !important;
+	}
+
+	#image-holder{
+		width: 100%;
+		height: auto;
+		padding: 12px;
+		text-align: center;
+		border: dashed 2px #c3c3c3;
+		margin-top: 10px;
+	}
+
+}
+
+

@@ -82,6 +82,14 @@ elixir((mix) => {
 
 	mix.sass(['resources/assets/sass/cms/pages/archives.scss'], 'public/css/cms/cms-archives.css');
 	/*------------------------------------------------------------------------*/
+
+
+	mix.sass(['resources/assets/sass/cms/pages/users-create.scss'], 'public/css/cms/cms-users-create.css');
+	/*------------------------------------------------------------------------*/
+
+
+	mix.sass(['resources/assets/sass/cms/pages/users-show.scss'], 'public/css/cms/cms-users-show.css');
+	/*------------------------------------------------------------------------*/
  
 
 	/* JS Libs Cms */
@@ -173,6 +181,22 @@ elixir((mix) => {
 		'resources/assets/js/cms/libs/dropzone.js',
 		'resources/assets/js/cms/libs/sweetalert2.js',
 		], 'public/js/cms/cms-archives-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/select2.min.js',
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-users-create-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/select2.min.js',
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-users-show-libs.js'); 
 	/*------------------------------------------------------------------------*/	
 
 
@@ -241,6 +265,24 @@ elixir((mix) => {
 	mix.scripts([
 		'resources/assets/js/cms/modules/dropzone.js',
 		], 'public/js/cms/cms-archives.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/select2.js',
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-users-create.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/select2.js',
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-users-show.js'); 	
 	/*------------------------------------------------------------------------*/
 
 
