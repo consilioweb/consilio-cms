@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Model\Modules;
 use App\Model\Categories;
 
+
 class CategoriesController extends CmsController
 {
 
@@ -28,8 +29,6 @@ class CategoriesController extends CmsController
 		}
 
 
-
-
 		return view("cms/pages/categories/index", array(
 			"categories" => $categories->paginate(50),
 		));
@@ -38,6 +37,9 @@ class CategoriesController extends CmsController
 
 	public function create()
 	{
+
+		$users = Auth::user();
+		$user = Users::where('users_id', $users->users_id)->where('status', TRUE)->first();
 
 
 		$pages = Modules::where('status', '1')->get();

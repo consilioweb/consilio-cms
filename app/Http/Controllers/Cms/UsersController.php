@@ -12,6 +12,7 @@ use App\Model\Modules;
 
 use Auth;
 
+
 class usersController extends CmsController
 {
 
@@ -145,9 +146,9 @@ class usersController extends CmsController
 				));
 			}
 
-			if($request->hasFile('photo_profile')) {
+			if($request->hasFile('image')) {
 
-				$file = $request->file('photo_profile');
+				$file = $request->file('image');
 				$input['imagename'] = md5(time()).'.'.$file->getClientOriginalExtension();
 				$name_img = md5(time()).'.'.$file->getClientOriginalExtension();
 				$destinationPath = public_path('storage/files/');

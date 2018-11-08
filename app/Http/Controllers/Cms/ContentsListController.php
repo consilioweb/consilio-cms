@@ -12,7 +12,6 @@ use App\Model\Contents;
 use App\Model\Categories;
 use App\Model\Definitions;
 
-#
 
 class ContentsListController extends CmsController
 {

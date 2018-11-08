@@ -11,9 +11,6 @@ use App\Model\Modules;
 use App\Model\Contents;
 use App\Model\Gallery;
 
-#
-
-use App\Model\Definitions;
 
 class GalleryController extends CmsController
 {

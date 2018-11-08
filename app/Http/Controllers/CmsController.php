@@ -13,18 +13,18 @@ use App\Model\Definitions;
 use App\Model\Modules;
 
 
+
+
 class CmsController extends Controller
 {
 	public function __construct(Request $request)
 	{
-		$definitions = Definitions::first();		
-		$users = Auth::user();
+		$definitions = Definitions::first();	
 
 		View::share(array(
 			"definitions"   => $definitions,
 			"pages_unic" => Modules::where('type_module', '1')->where('status', '1')->get(),
-			"pages_list" => Modules::where('type_module', '2')->where('status', '1')->get(),			
-			"users" => $users,
+			"pages_list" => Modules::where('type_module', '2')->where('status', '1')->get(),		
 		));
 	} 
 }

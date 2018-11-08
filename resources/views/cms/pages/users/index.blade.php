@@ -77,8 +77,12 @@
 								<td>{!!$value->first_name . " " . $value->last_name!!}</td>
 								<td>{!!$value->nivel()!!}</td>								
 								<td>
+									@if($value->last_acess != "")
 									<i class="fa fa-calendar-o" aria-hidden="true"></i> {!!extractDate($value->last_acess)!!} às 
 									<i class="fa fa-clock-o" aria-hidden="true"></i> {!!extrateHour($value->last_acess)!!}
+									@else
+									Usuário nunca logou
+									@endif 
 								</td>								
 								<td class="" width="165">
 									@if($value->status == 1)

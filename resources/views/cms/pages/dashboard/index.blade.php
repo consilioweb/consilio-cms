@@ -21,6 +21,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="container-fluid">
 
 	<div class="card-group">
@@ -100,7 +101,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-8"><span class="display-6">6 <i class="ti-angle-down font-14 text-danger"></i></span>
+                        <div class="col-8"><span class="display-6">{!!$day!!} <i class="ti-angle-down font-14 text-danger"></i></span>
                             <h6>Vísitas hoje</h6></div>
                         <div class="col-4 align-self-center text-right  p-l-0">
                             <div id="sparklinedash3"></div>
@@ -114,7 +115,7 @@
                 <div class="card-body">
                     <!-- Row -->
                     <div class="row">
-                        <div class="col-8"><span class="display-6">56 <i class="ti-angle-up font-14 text-success"></i></span>
+                        <div class="col-8"><span class="display-6">{!!$week!!} <i class="ti-angle-up font-14 text-success"></i></span>
                             <h6>Vísitas essa semana</h6></div>
                         <div class="col-4 align-self-center text-right p-l-0">
                             <div id="sparklinedash"></div>
@@ -127,7 +128,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-8"><span class="display-6">250 <i class="ti-angle-up font-14 text-success"></i></span>
+                        <div class="col-8"><span class="display-6">{!!$month!!} <i class="ti-angle-up font-14 text-success"></i></span>
                             <h6>Vísitas esse mês</h6></div>
                         <div class="col-4 align-self-center text-right p-l-0">
                             <div id="sparklinedash2"></div>
@@ -141,7 +142,7 @@
                 <div class="card-body">
 					<div class="row">
                         <div class="col-8">
-                        	<span class="display-6">1205 <i class="ti-angle-up font-14 text-success"></i></span>
+                        	<span class="display-6">{!!$year!!} <i class="ti-angle-up font-14 text-success"></i></span>
                             <h6>Total de vísitas</h6>
                         </div>
                         <div class="col-4 align-self-center text-right p-l-0">

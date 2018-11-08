@@ -118,8 +118,9 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!}
-                                <span class="m-l-5 font-medium d-none d-sm-inline-block">Humberto Martins <i class="mdi mdi-chevron-down"></i></span>
+                               {{-- {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} --}}
+                               {!!img(Auth::user()->photo, 40, 40, true, true, array("class" => "rounded-circle"))!!}
+                                <span class="m-l-5 font-medium d-none d-sm-inline-block">{!!Auth::user()->first_name!!} {!!Auth::user()->last_name!!} <i class="mdi mdi-chevron-down"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
@@ -130,21 +131,18 @@
                                         {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '60', 'height' => '60'))!!}
                                     </div>
                                     <div class="m-l-20">
-                                        <h4 class="m-b-0">Humberto Martins</h4>
-                                        <p class=" m-b-0">humberto@consilio.com.br</p>
+                                        <h4 class="m-b-0">{!!Auth::user()->first_name!!} {!!Auth::user()->last_name!!}</h4>
+                                        <p class=" m-b-0">{!!Auth::user()->email!!}</p>
                                     </div>
                                 </div>
                                 <div class="profile-dis scrollable">
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-user m-r-5 m-l-5"></i> Perfil</a>
-                                    <div class="dropdown-divider"></div>   
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Meus dados</a>
                                     <div class="dropdown-divider"></div>  
                                     <a class="dropdown-item" href="javascript:void(0)">   
                                         <i class="ti-email m-r-5 m-l-5"></i> Notificações</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="{!!route('cms-auth-logout')!!}">
                                         <i class="fa fa-power-off m-r-5 m-l-5"></i> Sair</a>
                                     <div class="dropdown-divider"></div>
                                 </div>

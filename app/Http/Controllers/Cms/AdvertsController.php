@@ -10,6 +10,8 @@ use App\Http\Requests;
 use App\Model\Modules;
 use App\Model\Adverts;
 
+
+
 class advertsController extends CmsController
 {
 
@@ -31,9 +33,10 @@ class advertsController extends CmsController
 		$pages = Modules::where('status', '1')->get();
 
 
+
 		return view("cms/pages/adverts/index", array(
 			"adverts" => $adverts->paginate(50),
-			"pages" => $pages,
+			"user" => $user,
 		));
 	}
 

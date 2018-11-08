@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Modules;
 
+
+
 class ModulesController extends CmsController
 {
    /**

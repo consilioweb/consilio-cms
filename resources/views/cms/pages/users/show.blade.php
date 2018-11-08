@@ -110,9 +110,11 @@
 										<div id="image-holder">				 				
 											@if(!empty($users->photo))
 											<div class="btn-thumb">
+												@if($users->photo != "default.jpg")
 												<a style="margin-bottom: 7px;" href="{!!route('cms-users-photos',  array($users->users_id, "delete"))!!}" class="btn waves-effect waves-light btn-dark">
 													<i class="icon-trash"></i> Excluir
 												</a>
+												@endif
 											</div>
 											{!!img($users->photo, 400, 400, true, true, array("class" => "cover"))!!}
 											@endif

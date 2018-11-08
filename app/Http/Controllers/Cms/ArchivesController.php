@@ -11,9 +11,7 @@ use App\Model\Modules;
 use App\Model\Contents;
 use App\Model\Gallery;
 
-#
 
-use App\Model\Definitions;
 
 class ArchivesController extends CmsController
 {
@@ -26,6 +24,9 @@ class ArchivesController extends CmsController
 
 		$module 	= Modules::where('modules_id', $modules_id)->first();
 		$content 	= Contents::where('contents_id', $contents_id)->first();
+
+
+
 
 		return view("cms/pages/archives/index", array(
 			"gallery" => $gallery->get(),
