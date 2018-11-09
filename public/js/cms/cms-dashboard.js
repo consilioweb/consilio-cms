@@ -14,10 +14,8 @@
             success: function(data){
 
                 new Chartist.Line('.graph-visitors', {
-                    labels: [data.meses],
-                    series: [
-                    [13, 1]
-                    ]
+                    labels: data.meses,
+                    series: [[5,15]]
                 }, {
                     high: 15,
                     low: 0,
