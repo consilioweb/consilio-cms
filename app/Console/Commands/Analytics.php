@@ -11,6 +11,8 @@ use App\Model\AnalyticsRecordsWeek;
 use App\Model\AnalyticsRecordsMonth;
 use App\Model\AnalyticsRecordsYear;
 
+use Carbon\Carbon;
+
 class Analytics extends Command
 {
     /**
@@ -60,9 +62,7 @@ class Analytics extends Command
             $day->save();
         }
 
-
-        $Week = date('w');
-        $reference_week =   date('Y-m-d', strtotime('-'.$Week.' days'));
+        $reference_week = Carbon::now()->startOfWeek()->format('Y-m-d');
         $week = AnalyticsRecordsWeek::where('reference', $reference_week)->first();
         if(is_null($week)){         
             AnalyticsRecordsWeek::create([

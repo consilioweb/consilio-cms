@@ -741,3 +741,48 @@ if( ! function_exists( 'setDate' ) ){
         return $data;
     }
 }
+
+
+if ( ! function_exists( 'prettify_numbers' ))
+{
+    function prettify_numbers ( $number = '0', $decimals = 2, $int_only = false ) {
+    // O número (que na verdade deve ser uma string)
+        $number = (string)$number;
+
+    // O símbolo
+        $simbol = null;
+
+    // yotta: 1000000000000000000000000
+        if ( $number > '999999' ) {
+            $number = bcdiv( $number, '1000000', $decimals);
+            $number = str_replace(".", ",", $number);
+            $simbol = 'mi';
+
+            $separation = explode(",", $number);
+            $array = str_split($separation[1]);
+
+            $number =  $separation[0] . "," . $array[0];
+
+        }
+
+    // Kilo : 1000
+        elseif ( $number > '999' ) {
+            $number = bcdiv( $number, '1000', $decimals);
+            $number = round($number);
+            $simbol = 'mil';
+        }
+
+        elseif( $number > '99' ){
+            $number = bcdiv( $number, '1000', $decimals);
+            $number = round($number);
+            $simbol = 'mil';
+            
+        }
+
+    // Retorna apenas o número inteiro
+        if ( $int_only ) return (int)$number . $simbol;
+
+    // Retorna o número e o símbolo
+        return $number . $simbol;
+    }
+}

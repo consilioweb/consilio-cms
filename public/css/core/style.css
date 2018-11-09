@@ -17149,6 +17149,14 @@ File: scss
   left: 0;
 }
 
+.loading-days {
+  width: 100%;
+  height: auto;
+  float: left;
+  text-align: center;
+  padding: 30px;
+}
+
 /*Theme Colors*/
 /*Topbar Colors*/
 /*Sidebar Colors*/

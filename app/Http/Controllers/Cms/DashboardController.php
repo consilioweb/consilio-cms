@@ -22,6 +22,8 @@ class DashboardController extends CmsController
 
 	public function index()
 	{	
+
+
 		return view("cms/pages/dashboard/index", array(
 			"day" => Analytics::countVisitors(1),
 			"week" => Analytics::countVisitors(2),

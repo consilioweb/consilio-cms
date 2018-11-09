@@ -96,139 +96,144 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8"><span class="display-6">{!!$day!!} <i class="ti-angle-down font-14 text-danger"></i></span>
-                            <h6>Vísitas hoje</h6></div>
-                        <div class="col-4 align-self-center text-right  p-l-0">
-                            <div id="sparklinedash3"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="card " title="{!!$day['text']!!}">
+				<div class="card-body">
+					<div class="d-flex no-block align-items-center">
+						<div>
+							<span class="text-muted display-6"><i class="ti-bar-chart"></i></span>
+						</div>
+						<div class="ml-auto text-right" >
+							<h2>{!!$day['count']!!}<i class="{!!$day['rel']!!} font-14 text-{!!$day['target']!!}"></i></h2>
+							<h6 class="text-muted">Visitas Hoje </h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Row -->
-                    <div class="row">
-                        <div class="col-8"><span class="display-6">{!!$week!!} <i class="ti-angle-up font-14 text-success"></i></span>
-                            <h6>Vísitas essa semana</h6></div>
-                        <div class="col-4 align-self-center text-right p-l-0">
-                            <div id="sparklinedash"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="card " title="{!!$week['text']!!}">
+				<div class="card-body">
+					<div class="d-flex no-block align-items-center">
+						<div>
+							<span class="text-muted display-6"><i class="ti-bar-chart"></i></span>
+						</div>
+						<div class="ml-auto text-right">
+							<h2>{!!$week['count']!!}<i class="{!!$week['rel']!!} font-14 text-{!!$week['target']!!}"></i></h2>
+							<h6 class="text-muted">Vísitas essa semana</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8"><span class="display-6">{!!$month!!} <i class="ti-angle-up font-14 text-success"></i></span>
-                            <h6>Vísitas esse mês</h6></div>
-                        <div class="col-4 align-self-center text-right p-l-0">
-                            <div id="sparklinedash2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="card " title="{!!$month['text']!!}">
+				<div class="card-body">
+					<div class="d-flex no-block align-items-center">
+						<div>
+							<span class="text-muted display-6"><i class="ti-bar-chart"></i></span>
+						</div>
+						<div class="ml-auto text-right">
+							<h2>{!!$month['count']!!}<i class="{!!$month['rel']!!} font-14 text-{!!$month['target']!!}"></i></h2>
+							<h6 class="text-muted">Vísitas esse mês </h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-					<div class="row">
-                        <div class="col-8">
-                        	<span class="display-6">{!!$year!!} <i class="ti-angle-up font-14 text-success"></i></span>
-                            <h6>Total de vísitas</h6>
-                        </div>
-                        <div class="col-4 align-self-center text-right p-l-0">
-                            <h6>Desde</h6>
-                            <h6>15/10/2018</h6>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>        
-
+			<div class="card ">
+				<div class="card-body">
+					<div class="d-flex no-block align-items-center">
+						<div>
+							<h6>Desde</h6>
+							<h6>{!!$year['date']!!}</h6>
+						</div>
+						<div class="ml-auto text-right">
+							<h2>{!!$year['count']!!} </h2>
+							<h6 class="text-muted">Total de Visitas </h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-8">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
-                        <div class="col-12">
-                            <ul class="list-inline float-right">
-                                <li class="list-inline-item">
-                                    <h6 class="text-muted"><i class="fa fa-circle m-r-5 ct-a-legend"></i>Vísitas únicas</h6> </li>
-                                <li class="list-inline-item">
-                                    <h6 class="text-muted"><i class="fa fa-circle m-r-5 ct-b-legend"></i>Total de vísitas</h6> </li>
-                            </ul>
-                            <h4 class="card-title">Gráfico de vísitas anual </h4>
-                            <h5 class="card-subtitle">2018</h5>
-                        </div>
-                        <div class="col-12 m-t-20 revenue">
-                            <div class="total-revenue4" style="height: 350px;"></div>
-                        </div>
-                       
-                    </div>
+						<div class="col-12">
+							<ul class="list-inline float-right">
+								<li class="list-inline-item">
+									<h6 class="text-muted">
+										<i class="fa fa-circle m-r-5 ct-b-legend"></i>Total de vísitas
+									</h6>
+								</li>
+							</ul>
+							<h4 class="card-title">Gráfico de vísitas anual </h4>
+							<h5 class="card-subtitle">2018</h5>
+						</div>
+						<div class="col-12 m-t-20 revenue">
+							<div class="graph-visitors" style="height: 350px;"></div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-4">
-		<div class="card">
-			<div class="card-body">
-                <h4 class="card-title">Atividades recentes (log)</h4>
-                <div class="profiletimeline">
-                    <div class="sl-item">
-                        <div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
-                        <div class="sl-right">
-                            <div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="sl-item">
-                        <div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
-                        <div class="sl-right">
-                            <div> <a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
-                                <div class="m-t-20 row">
-                                    <div class="col-md-9 col-12">
-                                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. </p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="sl-item">
-                        <div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
-                        <div class="sl-right">
-                            <div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
-                                <p class="m-t-10"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper </p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="sl-item">
-                        <div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
-                        <div class="sl-right">
-                            <div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">minutos atrás</span>
-                                <blockquote class="m-t-10">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Atividades recentes (log)</h4>
+					<div class="profiletimeline">
+						<div class="sl-item">
+							<div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
+							<div class="sl-right">
+								<div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="sl-item">
+							<div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
+							<div class="sl-right">
+								<div> <a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
+									<div class="m-t-20 row">
+										<div class="col-md-9 col-12">
+											<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. </p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="sl-item">
+								<div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
+								<div class="sl-right">
+									<div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">5 minutos atrás</span>
+										<p class="m-t-10"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper </p>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="sl-item">
+								<div class="sl-left"> {!!img('users/2.jpg', array('class' => 'rounded-circle','width' => '40', 'height' => '40'))!!} </div>
+								<div class="sl-right">
+									<div><a href="javascript:void(0)" class="link">Humberto Martins</a> <span class="sl-date">minutos atrás</span>
+										<blockquote class="m-t-10">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+										</blockquote>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
 		</div>
-	</div>			
-	</div>
-	
-</div>
 
-@endsection
+	</div>
+
+	@endsection
