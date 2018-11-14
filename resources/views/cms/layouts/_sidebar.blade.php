@@ -52,10 +52,36 @@
                         </li> 
                         
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-adverts')!!}" aria-expanded="false">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false">
                                 <i class="mdi mdi-star"></i>
                                 <span class="hide-menu">Anúncios</span>
                             </a>
+                            <ul aria-expaned="false" class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-adverts')!!}" class="sidebar-link">
+                                         <i class="icon-flag"></i>                                        
+                                        <span class="hide-menu"> Banners</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-advertisers')!!}" class="sidebar-link">
+                                         <i class="fas fa-users"></i>                                        
+                                        <span class="hide-menu"> Anunciantes</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-adverts-locations')!!}" class="sidebar-link">
+                                         <i class="fas fa-th"></i>                                        
+                                        <span class="hide-menu"> Módulos</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-adverts-reports')!!}" class="sidebar-link">
+                                         <i class="ti-bar-chart"></i>                                        
+                                        <span class="hide-menu"> Relatórios</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="sidebar-item"> 
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">

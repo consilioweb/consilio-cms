@@ -57,55 +57,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card" style="display: none;">
-				<div class="card-body">
-					<h5 class="text-theme">Listagem de Modulos</h5>
-					<div class="table-responsive">
-						<table class="table  table-sm">
-							<thead>
-								<tr>
-									<th width="10">ID</th>
-									<th>Módulo</th>
-									<th>Tipo de Módulo</th>
-									<th width="20">Status</th>
-									<th width="20">Editar</th>
-									<th width="20">Excluir</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($modules as $value)
-								<tr>
-									<td>{!!$value->modules_id!!}</td>
-									<td><h6>{!!$value->module!!}</h6></td>
-									<td>{!!$value->type_module()!!}</td>
-									<td>
-										@if($value->status == 1)
-										<a href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@elseif($value->status == 2)
-										<a href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@endif
-									</td>
-									<td>
-										<a href="{!!route('cms-modules-update', $value->modules_id)!!}" class="btn btn-theme ">
-											<i class="fas fa-pencil-alt" aria-hidden="true"></i>
-										</a>
-									</td>
-									<td>
-										<a href="{!!route('cms-modules-delete', $value->modules_id)!!}" class="btn btn-theme ">
-											<i class="fa fa-trash" aria-hidden="true"></i>
-										</a>
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
 			<!-- Column -->
 			<div class="card">
 				<div class="card-body">

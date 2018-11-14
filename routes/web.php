@@ -87,7 +87,33 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::get('usuarios/foto/{id}/{action}', array('as' => 'cms-users-photos', 'uses' => 'UsersController@destroyPhoto', 'nickname' => "Apagar Foto de Usuários"));
 
 
-		Route::get('plugins/anuncios', array('as' => 'cms-adverts', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Anuncios"));
+		/* ~~~~~~~~~~~~~~ BANNERS ~~~~~~~~~~~~~~~~~*/
+		Route::get('plugins/anuncios/banners', array('as' 				=> 'cms-adverts', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Banners de Anuncios"));
+		Route::get('plugins/anuncios/banners/novo', array('as'          => 'cms-adverts-create', 'uses' => 'ModulesController@create', 'nickname' => "Criar Banners de Anuncios"));
+		Route::post('plugins/anuncios/banners/novo', array('as'         => 'cms-adverts-create', 'uses' => 'ModulesController@store', 'nickname' => "Criar Banners de Anuncios"));
+		Route::get('plugins/anuncios/banners/{id}', array('as'          => 'cms-adverts-show', 'uses' => 'ModulesController@show', 'nickname' => "Visualizar Banners de Anuncios"));
+		Route::put('plugins/anuncios/banners/{id}', array('as'          => 'cms-adverts-update', 'uses' => 'ModulesController@update', 'nickname' => "Atualizar Banners de Anuncios"));
+		Route::get('plugins/anuncios/banners/{id}/excluir', array('as'  => 'cms-adverts-delete', 'uses' => 'ModulesController@destroy', 'nickname' => "Excluir Banners de Anuncios"));
+		Route::get('plugins/anuncios/banners/{id}/{action}', array('as' => 'cms-adverts-status', 'uses' => 'ModulesController@status', 'nickname' => "Status de Banners de Anuncios"));
+
+		Route::get('plugins/anuncios/anunciantes', array('as' 				=> 'cms-advertisers', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Anunciantes"));
+		Route::get('plugins/anuncios/anunciantes/novo', array('as'          => 'cms-advertisers-create', 'uses' => 'ModulesController@create', 'nickname' => "Criar Anunciantes"));
+		Route::post('plugins/anuncios/anunciantes/novo', array('as'         => 'cms-advertisers-create', 'uses' => 'ModulesController@store', 'nickname' => "Criar Anunciantes"));
+		Route::get('plugins/anuncios/anunciantes/{id}', array('as'          => 'cms-advertisers-show', 'uses' => 'ModulesController@show', 'nickname' => "Visualizar Anunciantes"));
+		Route::put('plugins/anuncios/anunciantes/{id}', array('as'          => 'cms-advertisers-update', 'uses' => 'ModulesController@update', 'nickname' => "Atualizar Anunciantes"));
+		Route::get('plugins/anuncios/anunciantes/{id}/excluir', array('as'  => 'cms-advertisers-delete', 'uses' => 'ModulesController@destroy', 'nickname' => "Excluir Anunciantes"));
+		Route::get('plugins/anuncios/anunciantes/{id}/{action}', array('as' => 'cms-advertisers-status', 'uses' => 'ModulesController@status', 'nickname' => "Status de Anunciantes"));
+
+		Route::get('plugins/anuncios/modulos', array('as' 				=> 'cms-adverts-locations', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Local de Banners"));
+		Route::get('plugins/anuncios/modulos/novo', array('as'          => 'cms-adverts-locations-create', 'uses' => 'ModulesController@create', 'nickname' => "Criar Local de Banners"));
+		Route::post('plugins/anuncios/modulos/novo', array('as'         => 'cms-adverts-locations-create', 'uses' => 'ModulesController@store', 'nickname' => "Criar Local de Banners"));
+		Route::get('plugins/anuncios/modulos/{id}', array('as'          => 'cms-adverts-locations-show', 'uses' => 'ModulesController@show', 'nickname' => "Visualizar Local de Banners"));
+		Route::put('plugins/anuncios/modulos/{id}', array('as'          => 'cms-adverts-locations-update', 'uses' => 'ModulesController@update', 'nickname' => "Atualizar Local de Banners"));
+		Route::get('plugins/anuncios/modulos/{id}/excluir', array('as'  => 'cms-adverts-locations-delete', 'uses' => 'ModulesController@destroy', 'nickname' => "Excluir Local de Banners"));
+		Route::get('plugins/anuncios/modulos/{id}/{action}', array('as' => 'cms-adverts-locations-status', 'uses' => 'ModulesController@status', 'nickname' => "Status de Local de Banners"));
+
+		Route::get('plugins/anuncios/relatorios', array('as' 				=> 'cms-adverts-reports', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Relatórios de Banners"));
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
 	});

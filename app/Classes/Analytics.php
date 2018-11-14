@@ -75,7 +75,7 @@ class Analytics {
 					$text = $c."% de aumento em Relação a ontem";
 				}
 			}else{				
-				$rel = "ti-infinite";
+				$rel = "ti-minus";
 				$target = "dark";
 				$text = "*Dados não calculado ainda";
 				$c = "";
