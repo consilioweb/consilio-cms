@@ -50,10 +50,31 @@
                             <i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Plugins</span>
                         </li> 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-comment-multiple-outline"></i><span class="hide-menu">Comentários</span></a></li> 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-radiobox-marked"></i><span class="hide-menu">Enquete</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-star"></i><span class="hide-menu">Anúncios</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">Newletters</span></a></li>
+                        
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-adverts')!!}" aria-expanded="false">
+                                <i class="mdi mdi-star"></i>
+                                <span class="hide-menu">Anúncios</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                                <i class="mdi mdi-comment-multiple-outline"></i>
+                                <span class="hide-menu">Comentários</span>
+                            </a>
+                        </li> 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                                <i class="mdi mdi-radiobox-marked"></i>
+                                <span class="hide-menu">Enquete</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                                <i class="mdi mdi-email"></i>
+                                <span class="hide-menu">Newletters</span>
+                            </a>
+                        </li>
                         <li class="nav-small-cap">
                             <i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Configurações</span>

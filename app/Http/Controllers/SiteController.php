@@ -10,6 +10,7 @@ use View;
 
 # Global
 use App\Model\Definitions;
+use App\Model\Site;
 
 # Analytics
 use App\Classes\Analytics;
@@ -18,10 +19,12 @@ class SiteController extends Controller
 {
 	public function __construct(Request $request)
 	{	
-
+		$definitions = Definitions::first();
+		$site = Site::first();
 		//parent::__construct();   
 		View::share(array(
-			"defintions"   => "defintions"
+			"defintions"   	=> $definitions,
+			"site"   		=> $site,
 		));    
 	}  
 }

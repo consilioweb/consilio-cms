@@ -2,7 +2,7 @@
 <html lang="pt-BR" itemscope itemtype="http://schema.org/WebPage">
 <head>
     <!--  Start meta tags -->    
-    <title>{{Config::get('app.appTitle')}}</title>
+    <title>{!!$site->title!!}</title>
     <meta name="csrf-token" content="{!!csrf_token()!!}"/>
 
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
@@ -11,10 +11,11 @@
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="{{Config::get('app.appKeywords')}}"/>
-    <meta name="description" content="{{Config::get('app.appDescription')}}">
+    <meta name="keywords" content="{!!$site->keywords!!}"/>
+    <meta name="description" content="{!!$site->description!!}">
     <meta name="robots" content="index,follow,noodp"/>
     <meta name="language" content="portuguese"/>
+    <meta name="autor" content="Web:Consilio"/>
 
 
     <!-- Open Graph data -->
@@ -49,3 +50,4 @@
 
 
 </body>
+</html>

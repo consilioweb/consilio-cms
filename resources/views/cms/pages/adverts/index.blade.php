@@ -1,23 +1,58 @@
 @extends('cms.layouts._default')
-
-@section('content')	
-
-<!-- Breadcrumb -->
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-	<li class="breadcrumb-item ">
-		<a href="{!!route('cms-dashboard')!!}">Home</a>
-	</li>
-{{-- 	<li class="breadcrumb-item">
-		<a href="#">Layouts</a>
-	</li> --}}
-	<li class="breadcrumb-item active">Plugins</li>
-	<li class="breadcrumb-item active">Anuncios</li>
-</ol>
+@section('content')
 
 
-<div class="container">
+
+<div class="page-breadcrumb">
+	<div class="row">
+		<div class="col-5 align-self-center">
+			<h4 class="page-title">Anuncios</h4>
+		</div>
+		<div class="col-7 align-self-center">
+			<div class="d-flex align-items-center justify-content-end">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Plugins</li>
+						<li class="breadcrumb-item active" aria-current="page">Anúncios</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div> 
+</div>
+
+<div class="container-fluid">
 	<!-- Alerts -->
 	@include('cms.layouts._alerts')
+
+
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+
+					<a href="#" class="btn waves-effect waves-light btn-outline-dark active" style="border-bottom-right-radius: 0; border-bottom-left-radius: 0;">Anúncios</a>
+
+					<div class="tab-content tabcontent-border">
+						<div class="tab-pane active" id="home" role="tabpanel">
+							<div class="row">
+								<div class="col-8">
+									
+								</div>
+								<div class="col-4"></div>
+							</div>
+						</div>
+						<div class="tab-pane  p-20" id="profile" role="tabpanel">2</div>
+						<div class="tab-pane p-20" id="messages" role="tabpanel">3</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<div class="row">

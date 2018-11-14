@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Model\Modules;
-use App\Model\Adverts;
+use App\Model\AdBanners;
 
 
 
@@ -17,7 +17,7 @@ class advertsController extends CmsController
 
 	public function index(Request $request)
 	{
-		$adverts = Adverts::orderBy("adverts_id", "DESC");
+		$adverts = AdBanners::orderBy("adverts_id", "DESC");
 
 		if($request->input('title'))
 		{
@@ -36,7 +36,6 @@ class advertsController extends CmsController
 
 		return view("cms/pages/adverts/index", array(
 			"adverts" => $adverts->paginate(50),
-			"user" => $user,
 		));
 	}
 

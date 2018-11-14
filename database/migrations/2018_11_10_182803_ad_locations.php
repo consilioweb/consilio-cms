@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Location extends Migration
+class AdLocations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class Location extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
-            $table->increments('locations_id');
+        Schema::create('ad_locations', function (Blueprint $table) {
+            $table->increments('ad_locations_id');
             $table->string('title');
             $table->string('size')->nullable();
             $table->integer('status')->unsigned();
@@ -29,6 +29,6 @@ class Location extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('ad_locations');
     }
 }

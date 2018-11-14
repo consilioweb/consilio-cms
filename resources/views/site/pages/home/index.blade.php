@@ -4,7 +4,7 @@
 @section('content')	
 @include('site/pages/includes/header')
 
-<h1>TESTE</h1>
+<h1>CONTEUDO DO SITE</h1>
 
 @include('site/pages/includes/footer')
 @endsection

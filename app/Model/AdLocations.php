@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Locations extends Model
+class AdLocations extends Model
 {
-    protected $table      = "locations";
-	protected $primaryKey = 'locations_id';
+    protected $table      = "ad_locations";
+	protected $primaryKey = 'ad_locations_id';
 	protected $fillable   = ['title','size', 'status', 'created_at', 'updated_at'];
 
 	public function status() {
@@ -24,7 +24,7 @@ class Locations extends Model
 
 	public function adverts()
     {
-        return $this->hasMany('App\Model\Adverts', 'locations_id', 'locations_id');
+        return $this->hasMany('App\Model\AdBanners', 'ad_locations', 'ad_locations');
     }
 
 

@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Advertiser extends Model
+class AdClients extends Model
 {
-    protected $table      = "advertiser";
-	protected $primaryKey = 'advertiser_id';
+    protected $table      = "ad_clients";
+	protected $primaryKey = 'ad_clients_id';
 	protected $fillable   = ['logo','title','phone', 'email', 'cnpj', 'priority', 'status','created_at', 'updated_at'];
 
 	public function status() {

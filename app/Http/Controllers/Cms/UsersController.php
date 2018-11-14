@@ -12,12 +12,15 @@ use App\Model\Modules;
 
 use Auth;
 
+use App\Model\Sessions;
+
 
 class usersController extends CmsController
 {
 
 	public function index(Request $request)
-	{
+	{		
+
 		$users = Users::orderBy("users_id", "DESC");
 
 		if($request->input('name'))

@@ -20,9 +20,7 @@ class LoginController extends Controller
    		return view("cms/pages/auth/index");
    }
    
-    public function logout(Request $request) {
-    	
-
+    public function logout(Request $request) {   	
         $now = date("Y-m-d H:i:s");
         $users = Users::where('users_id', Auth::user()->users_id);
 
@@ -35,6 +33,11 @@ class LoginController extends Controller
     public function authenticate(Request $request) {
 
    		if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'status' => '1'], $request->input('remember'))) {
+        
+        $now = date("Y-m-d H:i:s");
+        $users = Users::where('users_id', Auth::user()->users_id);
+
+        $users->update(['last_acess' => $now]);
 
             return redirect()->intended(route('cms-dashboard'));
         }

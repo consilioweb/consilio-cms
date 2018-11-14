@@ -183,7 +183,6 @@
 
 #files-upload .dz-preview:hover .dz-image img {
   transform: scale(1.05, 1.05);
-  -webkit-filter: blur(8px);
   filter: blur(8px);
 }
 
@@ -530,13 +529,6 @@ body.swal2-iosfix {
   border: 1px solid #b4dbed;
 }
 
-.swal2-modal .swal2-input:focus::-webkit-input-placeholder,
-.swal2-modal .swal2-file:focus::-webkit-input-placeholder,
-.swal2-modal .swal2-textarea:focus::-webkit-input-placeholder {
-  opacity: 1;
-  color: #444;
-}
-
 .swal2-modal .swal2-input:focus:-ms-input-placeholder,
 .swal2-modal .swal2-file:focus:-ms-input-placeholder,
 .swal2-modal .swal2-textarea:focus:-ms-input-placeholder {
@@ -549,12 +541,6 @@ body.swal2-iosfix {
 .swal2-modal .swal2-textarea:focus::placeholder {
   opacity: 1;
   color: #444;
-}
-
-.swal2-modal .swal2-input::-webkit-input-placeholder,
-.swal2-modal .swal2-file::-webkit-input-placeholder,
-.swal2-modal .swal2-textarea::-webkit-input-placeholder {
-  color: #e6e6e6;
 }
 
 .swal2-modal .swal2-input:-ms-input-placeholder,
