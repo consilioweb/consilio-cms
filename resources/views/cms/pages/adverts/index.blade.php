@@ -36,25 +36,28 @@
 					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}
 					<div class="row">
 
-						<div class="form-group col-sm-3">
+						<div class="form-group col-sm-6">
 							{!!Form::text('title', null, ['class' => 'form-control','placeholder' => 'Titulo']) !!}	
 						</div>
-						<div class="form-group col-sm-3">
-							{!!Form::text('start_date', null, ['class' => 'form-control','placeholder' => 'Data Inicio']) !!}	
-						</div>
-						<div class="form-group col-sm-3">
-							{!!Form::text('end_date', null, ['class' => 'form-control','placeholder' => 'Data Fim']) !!}	
-						</div>
 
-						<div class="form-group col-sm-3">
+
+						<div class="form-group col-sm-6">
 							{!!Form::select('status', ['1' => 'Ativo',  '2' => 'Inativo'], null, ['class' => 'form-control', 'placeholder' => "Selecione"]) !!}	
 						</div>
 
 					</div>
 
-					<button type="submit" class="btn btn-theme btn-sm"><i class="fa fa-search"></i> Buscar</button>
-					<a href="{!!route('cms-adverts-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo</a>
+					<div class="pull-left">
+						<button type="submit" class="btn btn-theme btn-sm"><i class="fa fa-search"></i> Buscar</button>
+						<a href="{!!route('cms-adverts-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo Banner</a>
+					</div>
 					{!! Form::close() !!}
+
+					<div class="pull-right">
+						
+						<a href="{!!route('cms-advertisers')!!}" class="btn btn-dark btn-sm"><i class="ti-user"></i> Anunciantes</a>
+						<a href="{!!route('cms-adverts-locations')!!}" class="btn btn-danger btn-sm"><i class="ti-plug"></i> Módulos</a>
+					</div>
 
 				</div>
 			</div>

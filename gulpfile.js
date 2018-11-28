@@ -200,6 +200,14 @@ elixir((mix) => {
 	/*------------------------------------------------------------------------*/	
 
 
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/select2.min.js',
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-adverts-create-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
 	//
 	/* MODULES */
 	//
@@ -283,6 +291,16 @@ elixir((mix) => {
 		'resources/assets/js/cms/modules/preview.file.js',
 		'resources/assets/js/cms/modules/datapicker.js',
 		], 'public/js/cms/cms-users-show.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/select2.js',
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/datapicker.js',
+		'resources/assets/js/cms/modules/select-type.js',
+		], 'public/js/cms/cms-adverts-create.js'); 	
 	/*------------------------------------------------------------------------*/
 
 

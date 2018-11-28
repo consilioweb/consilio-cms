@@ -38,16 +38,10 @@ class CategoriesController extends CmsController
 	public function create()
 	{
 
-		$users = Auth::user();
-		$user = Users::where('users_id', $users->users_id)->where('status', TRUE)->first();
-
-
-		$pages = Modules::where('status', '1')->get();
 		$Modules = Modules::where('status', '1')->get();
 
 		return view("cms/pages/categories/show", array(
 			"modules" => $Modules,
-			"pages" => $pages,
 		));
 	}
 
