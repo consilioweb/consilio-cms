@@ -24,7 +24,7 @@ class AdLocations extends Model
 
 	public function adverts()
     {
-        return $this->hasMany('App\Model\AdBanners', 'ad_locations', 'ad_locations');
+        return $this->hasMany('App\Model\AdBanners', 'ad_locations_id', 'ad_locations_id');
     }
 
 

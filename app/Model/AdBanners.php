@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class AdBanners extends Model
 {
@@ -21,6 +22,43 @@ class AdBanners extends Model
 			break;
 		}
 	}
+	public function type() {
+		
+		switch ($this->status) {
+			case '1':
+				return "Arquivo";
+			break;
+			case '2':
+				return "Google";
+			break;
+			case '3':
+				return "Código/HTML5";
+			break;
+		}
+	}
+
+
+    public function getStartDateAttribute($start_date)
+    {
+        return Carbon::createFromFormat('Y-m-d', $start_date)->format('d/m/Y');
+    }
+
+    public function setStartDateAttribute($start_date)
+    {
+        $this->attributes['start_date'] = Carbon::createFromFormat('d/m/Y', $start_date)->format('Y-m-d');
+    }
+
+
+    public function getEndDateAttribute($end_date)
+    {
+        return Carbon::createFromFormat('Y-m-d', $end_date)->format('d/m/Y');
+    }
+
+    public function setEndDateAttribute($end_date)
+    {
+        $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $end_date)->format('Y-m-d');
+    }
+
 
 	public function advertiser()
     {
@@ -29,7 +67,7 @@ class AdBanners extends Model
 
 	public function location()
     {
-        return $this->hasOne('App\Model\AdLocations', 'ad_locations', 'ad_locations');
+        return $this->hasOne('App\Model\AdLocations', 'ad_locations_id', 'ad_locations_id');
     }
 
 

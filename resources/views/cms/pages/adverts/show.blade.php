@@ -49,36 +49,46 @@
 									{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo/Apelido ']) !!}
 								</div>
 							</div>
-							<div class="col-lg-6">
+							<div class="col-lg-3">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon1"><i class="ti-user" aria-hidden="true"></i></span>
 									</div>
-									{!!Form::select('ad_clients_id', $clients, null, ['placeholder' => "Selecione o Cliente", 'class' => 'form-control select2', "required" => "required"]) !!}	
+									{!!Form::select('ad_clients_id', $clients, null, ['placeholder' => "Selecione o Cliente", 'class' => 'form-control ', "required" => "required"]) !!}	
+								</div>
+							</div>	
+							<div class="col-lg-3">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1"><i class="ti-user" aria-hidden="true"></i></span>
+									</div>
+									{!!Form::select('ad_locations_id', $locations, null, ['placeholder' => "Selecione o Local", 'class' => 'form-control ', "required" => "required"]) !!}	
 								</div>
 							</div>							
 						</div>
 
 						<hr>
 
+
+
 						<div class="row">
 							<div class="col-lg-12" style="margin-bottom: 12px;">
 								<h4 class="card-title">Tipo do Anuncio</h4>
 								<div class="form-check form-check-inline">
-									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input select-type" data-type="file-type" id="archive" name="radio-stacked">
+									<div class="custom-control custom-radio">										
+										{!! Form::radio('type', '1', isset($adverts->type) ? $adverts->type == 1 : null, ['class' => 'custom-control-input select-type', 'required' => 'required', 'id' => 'archive', 'data-type' => 'file-type']) !!}
 										<label class="custom-control-label" for="archive">Arquivo</label>
 									</div>
 								</div>
 								<div class="form-check form-check-inline">
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input select-type" data-type="google-type" id="google" name="radio-stacked">
+										{!! Form::radio('type', '2', isset($adverts->type) ? $adverts->type == 2 : null, ['class' => 'custom-control-input select-type', 'required' => 'required', 'id' => 'google', 'data-type' => 'google-type']) !!}
 										<label class="custom-control-label" for="google">Google Adsense</label>
 									</div>
 								</div>
 								<div class="form-check form-check-inline">
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input select-type" data-type="code-type" id="code" name="radio-stacked">
+										{!! Form::radio('type', '3', isset($adverts->type) ? $adverts->type == 3 : null, ['class' => 'custom-control-input select-type', 'required' => 'required', 'id' => 'code', 'data-type' => 'code-type']) !!}
 										<label class="custom-control-label" for="code">Código</label>
 									</div>
 								</div>
@@ -86,22 +96,30 @@
 						</div>
 
 
-						<div id="file-type" class="row type-div" style="display: none;">
+						<div id="file-type" class="row type-div" {!!($adverts) ? ($adverts->type == '1') ? ' style="display:block" ' : ' style="display:none" ' : ' style="display: none;" ' !!} >
 							<div class="col-lg-12">
 								<div class="border-preview-img">
 									
 									<div class="input-group mb-3">
 										{!! Form::file('image', ['class' => 'form-control input-file', 'id' => 'photo_profile']) !!}
 										<div id="image-holder">				 				
-											@if(!empty($adverts->photo))
-											<div class="btn-thumb">
-												@if($adverts->photo != "default.jpg")
-												<a style="margin-bottom: 7px;" href="{!!route('cms-adverts-photos',  array($adverts->adverts_id, "delete"))!!}" class="btn waves-effect waves-light btn-dark">
-													<i class="icon-trash"></i> Excluir
-												</a>
+											@if(!empty($adverts->file))												
+												@php 
+												$ext = str_replace('.', '', strrchr($adverts->file, '.'));
+												@endphp
+
+												@if($ext == 'swf')
+												<object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' width='100%' height='auto'   codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0' align='middle'>
+													<param name='allowScriptAccess' value='sameDomain' />
+													<param name='movie' value='{!!public_path('storage/files/') . $adverts->file!!}'/>
+													<param name='quality' value='best' />
+													<param name='wmode' value='transparent' />
+													<param name='bgcolor' value='#ffffff' />
+													<embed src='{!!public_path('storage/files/') . $adverts->file!!}' width='100%' height='auto'   quality='best' wmode='transparent' bgcolor='#ffffff'  align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />
+												</object>
+												@else
+												{!!img($adverts->file, 400, 400, true, true, array("class" => "cover"))!!}
 												@endif
-											</div>
-											{!!img($adverts->photo, 400, 400, true, true, array("class" => "cover"))!!}
 											@endif
 										</div> 
 									</div>
@@ -112,30 +130,30 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon1"><i class="fas fa-external-link-alt" aria-hidden="true"></i></span>
 									</div>
-									{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Link do banner ex: http://']) !!}
+									{!! Form::text('url', null, ['class' => 'form-control', 'placeholder' => 'Link do banner ex: http://']) !!}
 								</div>
 							</div>
 						</div>
 
-						<div id="google-type" class="row type-div" style="display: none;">
+						<div id="google-type" class="row type-div" {!!($adverts) ? ($adverts->type == '2') ? ' style="display:block" ' : ' style="display:none" ' : ' style="display: none;" ' !!} >
 							<div class="col-12">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon1"><i class="fab fa-google" aria-hidden="true"></i></span>
 									</div>
-									{!! Form::textarea('email', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código do Google aqui ', 'rows' => '3']) !!}
+									{!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código do Google aqui ', 'rows' => '3']) !!}
 								</div>
 							</div>
 						</div>
 
 
-						<div id="code-type" class="row type-div" style="display: none;">
+						<div id="code-type" class="row type-div" {!!($adverts) ? ($adverts->type == '3') ? ' style="display:block" ' : ' style="display:none" ' : ' style="display: none;" ' !!} >
 							<div class="col-12">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon1"><i class="fas fa-code" aria-hidden="true"></i></span>
 									</div>
-									{!! Form::textarea('email', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código aqui ', 'rows' => '3']) !!}
+									{!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código aqui ', 'rows' => '3']) !!}
 								</div>
 							</div>
 						</div>
@@ -144,42 +162,57 @@
 
 
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-12">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1"><i class="ti-email" aria-hidden="true"></i></span>
+										<span class="input-group-text" id="basic-addon1"><i class="ti-money" aria-hidden="true"></i></span>
 									</div>
-									{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email ', 'autocomplete' => 'off ']) !!}
+									{!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Preço ', 'autocomplete' => 'off ']) !!}
 								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1"><i class="ti-lock" aria-hidden="true"></i></span>
-									</div>
-									{!! Form::password('password_input', ['class' => 'form-control password-input', 'placeholder' => 'Senha ', 'autocomplete' => 'off ']) !!}
-								</div>
-							</div>							
+							</div>						
 						</div>
-						
+
+
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-6">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon1"><i class="ti-calendar" aria-hidden="true"></i></span>
 									</div>
-									{!! Form::text('birth', null, ['class' => 'form-control datepicker']) !!}
+									{!! Form::text('start_date', null, ['class' => 'form-control datepicker', 'placeholder' => 'Data Inicio', 'autocomplete' => 'off ']) !!}
 								</div>
-							</div>
-							<div class="col-lg-6">
+							</div>		
+							<div class="col-6">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1"><i class="icon-energy" aria-hidden="true"></i></span>
+										<span class="input-group-text" id="basic-addon1"><i class="ti-calendar" aria-hidden="true"></i></span>
 									</div>
-									{!!Form::select('type', ['1' => 'Administrador do Sitema',  '2' => 'Adminsitrador do Site',  '3' => 'Usuário do Site'], null, ['placeholder' => "Selecione", 'class' => 'form-control select2', "required" => "required"]) !!}	
+									{!! Form::text('end_date', null, ['class' => 'form-control datepicker', 'placeholder' => 'Data Fim', 'autocomplete' => 'off ']) !!}
 								</div>
-							</div>							
+							</div>					
 						</div>
+
+						@if(isset($adverts))
+						<div class="row">
+							<div class="col-6">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1"><i class="ti-mouse-alt" aria-hidden="true"></i></span>
+									</div>
+									{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Clicks ', 'disabled' => true]) !!}
+								</div>
+							</div>	
+							<div class="col-6">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1"><i class="icon-eye" aria-hidden="true"></i></span>
+									</div>
+									{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Visualizações ', 'disabled' => true]) !!}
+								</div>
+							</div>						
+						</div>
+						@endif
+
 						<button type="submit" class="btn btn-primary">Salvar</button>
 						{!! Form::close() !!}
 					</div>

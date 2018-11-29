@@ -1,16 +1,3 @@
-;(function($){
-	function previewSWF() {
-
-		$('.input-file').change(function (){
-
-			fileInput = $(this);
-			extension = fileInput.val().split('.').pop();
-
-		});
-
-	}
-	new previewSWF();
-}(jQuery));
 
 ;(function($){
 	function dataPickerRun() {
@@ -48,4 +35,4 @@
 	new selectType();
 
 }(jQuery));
-//# sourceMappingURL=cms-adverts-create.js.map
+//# sourceMappingURL=cms-adverts-show.js.map

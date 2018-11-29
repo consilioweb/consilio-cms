@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Model\Modules;
 use App\Model\AdBanners;
 use App\Model\AdClients;
+use App\Model\AdLocations;
 
 
 
@@ -18,7 +19,7 @@ class advertsController extends CmsController
 
 	public function index(Request $request)
 	{
-		$adverts = AdBanners::orderBy("adverts_id", "DESC");
+		$adverts = AdBanners::orderBy("ad_banners_id", "DESC");
 
 		if($request->input('title'))
 		{
@@ -46,10 +47,12 @@ class advertsController extends CmsController
 	{
 
 		$clients = AdClients::all()->pluck('title', 'ad_clients_id');
+		$locations = AdLocations::all()->pluck('title', 'ad_locations_id');
 
 
 		return view("cms/pages/adverts/show", array(
 			"clients" => $clients,
+			"locations" => $locations,
 		));
 	}
 
@@ -62,9 +65,23 @@ class advertsController extends CmsController
 			'status' =>  '1'
 		));
 
+
+		if($request->hasFile('image')) {
+
+			$file = $request->file('image');
+			$input['imagename'] = md5(time()).'.'.$file->getClientOriginalExtension();
+			$name_img = md5(time()).'.'.$file->getClientOriginalExtension();
+			$destinationPath = public_path('storage/files/');
+			$file->move($destinationPath, $input['imagename']);
+			$request->merge(array(
+				'file' =>  $name_img,
+			));
+		}
+
+
 		try {
 			$adverts = AdBanners::create($request->all());
-			return redirect(route('cms-adverts-show', $adverts->adverts_id)); 
+			return redirect(route('cms-adverts-show', $adverts->ad_banners_id)); 
 		} catch (Exception $e) {
 			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
 			return redirect(route('cms-adverts')); 
@@ -75,6 +92,8 @@ class advertsController extends CmsController
 	public function show($id)
 	{   
 
+		
+
 
 		$adverts = AdBanners::find($id);
 
@@ -84,10 +103,12 @@ class advertsController extends CmsController
 
 
 		$clients = AdClients::all()->pluck('title', 'ad_clients_id');
+		$locations = AdLocations::all()->pluck('title', 'ad_locations_id');
 
 		return view("cms/pages/adverts/show", array(
 			"adverts" => $adverts,
 			"clients" => $clients,
+			"locations" => $locations,
 		));
 	}
 

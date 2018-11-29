@@ -73,27 +73,35 @@
 						<thead>
 							<tr>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Banner</th>
-								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Titulo - <strong>Cliente</strong></th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cliente / <strong>Titulo</strong></th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Local</th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Inicio e Fim</th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ações</th>
 							</tr>
 						</thead>
 						<tbody>
+							@foreach($adverts as $value)
 							<tr>
 								<td>img</td>
-								<td>Full Banner - <strong>Big Lojas</strong></td>
-								<td>Lateral do Site 250x250</td>
+								<td>{!!$value->advertiser->title!!} / <strong>{!!$value->title!!}</strong></td>
+								<td>{!!$value->location->title!!} </td>
 								<td>∞ & ∞</td>
 								<td class="" width="165">
-									<a title="Status: Ativo" href="#" class="btn waves-effect waves-light btn-light"> 
+									@if($value->status == 1)
+									<a title="Status: Ativo" href="{!!route('cms-adverts-status', array($value->ad_banners_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 
 										<i class="ti-check"></i> 
 									</a>
+									@elseif($value->status == 2)
+									<a title="Status: Inativo" href="{!!route('cms-adverts-status', array($value->ad_banners_id, "ativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+										<i class="ti-close"></i> 
+									</a>
+									@endif
 									
-									<button title="Apagar" type="button" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </button>
-									<button title="Editar" type="button" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </button>
+									<a title="Editar" href="{!!route('cms-adverts-show', $value->ad_banners_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </a>
+									<a title="Apagar" href="{!!route('cms-adverts-delete', $value->ad_banners_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </a>
 								</td>
 							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>
