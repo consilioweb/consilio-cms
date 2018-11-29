@@ -33,7 +33,7 @@
 
 			<div class="card">
 				<div class="card-body">
-					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-modules']]) !!}
+					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-adverts']]) !!}
 					<div class="row">
 
 						<div class="form-group col-sm-6">
@@ -72,7 +72,6 @@
 					<table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
 						<thead>
 							<tr>
-								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Banner</th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cliente / <strong>Titulo</strong></th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Local</th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Inicio e Fim</th>
@@ -82,10 +81,15 @@
 						<tbody>
 							@foreach($adverts as $value)
 							<tr>
-								<td>img</td>
 								<td>{!!$value->advertiser->title!!} / <strong>{!!$value->title!!}</strong></td>
-								<td>{!!$value->location->title!!} </td>
-								<td>∞ & ∞</td>
+								<td>{!!$value->location->title!!} {!!$value->location->size()!!} </td>
+								<td>
+									@if($value->start_date != '')
+									{!!$value->start_date!!} á {!!$value->end_date!!} 
+									@else
+									Ilimitado
+									@endif
+								</td>
 								<td class="" width="165">
 									@if($value->status == 1)
 									<a title="Status: Ativo" href="{!!route('cms-adverts-status', array($value->ad_banners_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 

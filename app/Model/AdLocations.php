@@ -22,6 +22,14 @@ class AdLocations extends Model
 		}
 	}
 
+	public function size()
+	{
+		$size = explode("/", $this->size);
+
+		return $size[0] . "x" . $size[1];
+
+	}
+
 	public function adverts()
     {
         return $this->hasMany('App\Model\AdBanners', 'ad_locations_id', 'ad_locations_id');
