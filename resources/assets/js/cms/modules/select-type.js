@@ -2,6 +2,7 @@
 	
 	function selectType() {	
 
+		alert("ALGO");
 
 		$('.select-type').change(function(e){
 

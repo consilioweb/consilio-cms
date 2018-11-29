@@ -210,9 +210,15 @@ elixir((mix) => {
 
 
 	mix.scripts([
-		'resources/assets/js/cms/libs/select2.min.js',
 		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
 		], 'public/js/cms/cms-adverts-create-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-adverts-show-libs.js'); 
 	/*------------------------------------------------------------------------*/
 
 
