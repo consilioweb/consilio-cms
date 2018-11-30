@@ -29,7 +29,6 @@
 	
 	function selectType() {	
 
-		alert("ALGO");
 
 		$('.select-type').change(function(e){
 
@@ -38,7 +37,6 @@
 			var type = $(this).attr('data-type');
 
 			$("#" + type).show();
-
 
 
 		});

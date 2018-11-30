@@ -55,100 +55,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card" style="display: none;">
-				<div class="card-body">
-					<h5 class="text-theme">Listagem de Modulos</h5>
-					<div class="table-responsive">
-						<table class="table  table-sm">
-							<thead>
-								<tr>
-									<th width="10">ID</th>
-
-									@if(!empty($module->title))
-									<th>{!!$module->title!!}</th>
-									@endif
-
-									@if(!empty($module->category))
-									<th>{!!$module->category!!}</th>
-									@endif
-
-									<th>Cadastrado em</th>
-									
-									@if(!empty($module->image_gallery))
-									<th>Fotos</th>
-									@endif
-
-									@if(!empty($module->file_gallery))
-									<th>Arquivos</th>
-									@endif
-
-									<th width="20">Status</th>
-									<th width="20">Editar</th>
-									<th width="20">Excluir</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($contents as $value)
-								<tr>
-									<td>{!!$value->contents_id!!}</td>
-
-									@if(!empty($module->title))
-									<td>{!!limita_caracteres($value->title, 60)!!}</td>
-									@endif
-
-									@if(!empty($module->category))
-									<td>{!!$value->categorie->title!!}</td>
-									@endif
-
-									<td>
-										<i class="fa fa-calendar-o" aria-hidden="true"></i> {!!extractDate($value->created_at)!!} às 
-										<i class="fa fa-clock-o" aria-hidden="true"></i> {!!extrateHour($value->created_at)!!}
-									</td>	
-
-									@if(!empty($module->image_gallery))							
-									<td>
-										<a href="{!!route('cms-gallery',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
-											<i class="mdi mdi-image-multiple" aria-hidden="true"></i>
-										</a>
-									</td>
-									@endif
-
-									@if(!empty($module->file_gallery))									
-									<td>
-										<a href="{!!route('cms-archives',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
-											<i class="fa fa-file-o" aria-hidden="true"></i>
-										</a>
-									</td>
-									@endif
-
-									<td>
-										@if($value->status == 1)
-										<a href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "desativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@elseif($value->status == 2)
-										<a href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "ativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@endif
-									</td>
-									<td>
-										<a href="{!!route('cms-contents-list-update',  array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
-											<i class="fa fa-pencil" aria-hidden="true"></i>
-										</a>
-									</td>
-									<td>
-										<a href="{!!route('cms-contents-list-delete', array($module->modules_id, $value->contents_id))!!}" class="btn btn-theme ">
-											<i class="fa fa-trash" aria-hidden="true"></i>
-										</a>
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
 			<!-- Column -->
 			<div class="card">
 				<div class="card-body">
@@ -172,7 +78,7 @@
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Fotos</th>
 								@endif
 
-								@if(empty($module->file_gallery))
+								@if(!empty($module->file_gallery))
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Arquivos</th>
 								@endif
 
@@ -203,7 +109,7 @@
 								</td>
 								@endif
 
-								@if(empty($module->file_gallery))
+								@if(!empty($module->file_gallery))
 								<td>
 									<a title="Arquivos" href="{!!route('cms-archives',  array($module->modules_id, $value->contents_id))!!}" class="btn waves-effect waves-light btn-light"> <i class=" ti-files"></i> Arquivos</a>
 								</td>
@@ -211,11 +117,11 @@
 
 								<td class="" width="165">
 									@if($value->status == 1)
-									<a title="Status: Ativo" href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Ativo" href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "desativar"))!!}" class="btn waves-effect waves-light btn-success"> 
 										<i class="ti-check"></i> 
 									</a>
 									@elseif($value->status == 2)
-									<a title="Status: Inativo" href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "ativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Inativo" href="{!!route('cms-contents-list-status', array($module->modules_id , $value->contents_id, "ativar"))!!}" class="btn waves-effect waves-light btn-danger"> 
 										<i class="ti-close"></i> 
 									</a>
 									@endif

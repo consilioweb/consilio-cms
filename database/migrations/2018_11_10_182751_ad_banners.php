@@ -23,6 +23,7 @@ class AdBanners extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('code')->nullable();
+            $table->text('code_google')->nullable();
             $table->string('file')->nullable();
             $table->string('url')->nullable();
             $table->integer('click')->nullable();

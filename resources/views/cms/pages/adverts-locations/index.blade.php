@@ -5,7 +5,7 @@
 <div class="page-breadcrumb">
 	<div class="row">
 		<div class="col-5 align-self-center">
-			<h4 class="page-title">Banners</h4>
+			<h4 class="page-title">Módulos de Banners</h4>
 		</div>
 		<div class="col-7 align-self-center">
 			<div class="d-flex align-items-center justify-content-end">
@@ -15,7 +15,7 @@
 							<a href="{!!route('cms-dashboard')!!}">Dashboard</a>
 						</li>
 						<li class="breadcrumb-item active" aria-current="page">Anuncios</li>
-						<li class="breadcrumb-item active" aria-current="page">Banners</li>
+						<li class="breadcrumb-item active" aria-current="page">Módulos / Locais</li>
 					</ol>
 				</nav>
 			</div>
@@ -33,7 +33,7 @@
 
 			<div class="card">
 				<div class="card-body">
-					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-adverts']]) !!}
+					{!! Form::open(['method' => 'get', 'autocomplete' => 'on', 'route' => ['cms-adverts-locations']]) !!}
 					<div class="row">
 
 						<div class="form-group col-sm-6">
@@ -49,60 +49,52 @@
 
 					<div class="pull-left">
 						<button type="submit" class="btn btn-theme btn-sm"><i class="fa fa-search"></i> Buscar</button>
-						<a href="{!!route('cms-adverts-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo Banner</a>
+						<a href="{!!route('cms-adverts-locations-create')!!}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Novo Módulo</a>
 					</div>
 					{!! Form::close() !!}
 
 					<div class="pull-right">
 						
-						<a href="{!!route('cms-advertisers')!!}" class="btn btn-dark btn-sm"><i class="ti-user"></i> Anunciantes</a>
-						<a href="{!!route('cms-adverts-locations')!!}" class="btn btn-danger btn-sm"><i class="ti-plug"></i> Módulos</a>
+						<a href="{!!route('cms-adverts')!!}" class="btn btn-dark btn-sm"><i class=" ti-ticket"></i> Anuncios</a>
+						<a href="{!!route('cms-adverts-locations')!!}" class="btn btn-success btn-sm"><i class="ti-user"></i> Anunciantes</a>
 					</div>
 
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">Listagem de Banners</h4>
+					<h4 class="card-title">Listagem de Anunciantes</h4>
 					<table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
 						<thead>
 							<tr>
-								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Anunciante / <strong>Titulo</strong></th>
-								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Local</th>
-								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Inicio e Fim</th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Módulo / Local</th>
+								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tamanho</th>
 								<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ações</th>
-							</tr>
+							</tr> 
 						</thead>
 						<tbody>
-							@foreach($adverts as $value)
+							@foreach($adverts_locations as $value)
 							<tr>
-								<td>{!!$value->advertiser->title!!} / <strong>{!!$value->title!!}</strong></td>
-								<td>{!!$value->location->title!!} {!!$value->location->size()!!} </td>
-								<td>
-									@if($value->start_date != '')
-									{!!$value->start_date!!} á {!!$value->end_date!!} 
-									@else
-									Ilimitado
-									@endif
-								</td>
+								<td><strong>{!!$value->title!!}</strong></td>
+								<td>{!!$value->size()!!}</td>
 								<td class="" width="165">
 									@if($value->status == 1)
-									<a title="Status: Ativo" href="{!!route('cms-adverts-status', array($value->ad_banners_id, "desativar"))!!}" class="btn waves-effect waves-light btn-success"> 
+									<a title="Status: Ativo" href="{!!route('cms-adverts-locations-status', array($value->ad_locations_id, "desativar"))!!}" class="btn waves-effect waves-light btn-success"> 
 										<i class="ti-check"></i> 
 									</a>
 									@elseif($value->status == 2)
-									<a title="Status: Inativo" href="{!!route('cms-adverts-status', array($value->ad_banners_id, "ativar"))!!}" class="btn waves-effect waves-light btn-danger"> 
+									<a title="Status: Inativo" href="{!!route('cms-adverts-locations-status', array($value->ad_locations_id, "ativar"))!!}" class="btn waves-effect waves-light btn-danger"> 
 										<i class="ti-close"></i> 
 									</a>
 									@endif
 									
-									<a title="Editar" href="{!!route('cms-adverts-show', $value->ad_banners_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </a>
-									<a title="Apagar" href="{!!route('cms-adverts-delete', $value->ad_banners_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </a>
+									<a title="Editar" href="{!!route('cms-adverts-locations-show', $value->ad_locations_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </a>
+									<a title="Apagar" href="{!!route('cms-adverts-locations-delete', $value->ad_locations_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </a>
 								</td>
 							</tr>
 							@endforeach

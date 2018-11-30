@@ -99,6 +99,14 @@ elixir((mix) => {
 	mix.sass(['resources/assets/sass/cms/pages/adverts-show.scss'], 'public/css/cms/cms-adverts-show.css');
 	/*------------------------------------------------------------------------*/
 
+	
+	mix.sass(['resources/assets/sass/cms/pages/advertisers-create.scss'], 'public/css/cms/cms-advertisers-create.css');
+	/*------------------------------------------------------------------------*/
+
+	
+	mix.sass(['resources/assets/sass/cms/pages/advertisers-show.scss'], 'public/css/cms/cms-advertisers-show.css');
+	/*------------------------------------------------------------------------*/
+
 
 	/* JS Libs Cms */
 	mix.scripts([
@@ -222,6 +230,20 @@ elixir((mix) => {
 	/*------------------------------------------------------------------------*/
 
 
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/jquery.mask.js',
+		], 'public/js/cms/cms-advertisers-create-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/jquery.mask.js',
+		], 'public/js/cms/cms-advertisers-show-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
 	//
 	/* MODULES */
 	//
@@ -324,6 +346,22 @@ elixir((mix) => {
 		'resources/assets/js/cms/modules/datapicker.js',
 		'resources/assets/js/cms/modules/select-type.js',
 		], 'public/js/cms/cms-adverts-show.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/mask.js',
+		], 'public/js/cms/cms-advertisers-create.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/preview.file.js',
+		'resources/assets/js/cms/modules/mask.js',
+		], 'public/js/cms/cms-advertisers-show.js'); 	
 	/*------------------------------------------------------------------------*/
 
 

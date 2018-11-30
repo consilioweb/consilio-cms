@@ -56,61 +56,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card" style="display: none;">
-				<div class="card-body">
-					<h5 class="text-theme">Listagem de Categorias</h5>
-					<div class="table-responsive">
-						<table class="table  table-sm">
-							<thead>
-								<tr>
-									<th width="10">ID</th>
-									<th>Categoria</th>
-									<th>Modulo</th>
-									<th>Cadastrado em</th>
-									<th width="20">Status</th>
-									<th width="20">Editar</th>
-									<th width="20">Excluir</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($categories as $value)
-
-								<tr>
-									<td>{!!$value->categories_id!!}</td>
-									<td>{!!$value->title!!}</td>
-									<td>{!!$value->module->module!!}</td>
-									<td>
-										<i class="fa fa-calendar-o" aria-hidden="true"></i> {!!extractDate($value->created_at)!!} às 
-										<i class="fa fa-clock-o" aria-hidden="true"></i> {!!extrateHour($value->created_at)!!}
-									</td>
-									<td>
-										@if($value->status == 1)
-										<a href="{!!route('cms-categories-status', array($value->categories_id, "desativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@elseif($value->status == 2)
-										<a href="{!!route('cms-categories-status', array($value->categories_id, "ativar"))!!}" class="btn btn-theme ">
-											{!!$value->status()!!}
-										</a>
-										@endif
-									</td>
-									<td>
-										<a href="{!!route('cms-categories-update', $value->categories_id)!!}" class="btn btn-theme ">
-											<i class="fa fa-pencil" aria-hidden="true"></i>
-										</a>
-									</td>
-									<td>
-										<a href="{!!route('cms-categories-delete', $value->categories_id)!!}" class="btn btn-theme ">
-											<i class="fa fa-trash" aria-hidden="true"></i>
-										</a>
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+	
 			<!-- Column -->
 			<div class="card">
 				<div class="card-body">
@@ -138,11 +84,11 @@
 								</td>								
 								<td class="" width="165">
 									@if($value->status == 1)
-									<a title="Status: Ativo" href="{!!route('cms-categories-status', array($value->categories_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Ativo" href="{!!route('cms-categories-status', array($value->categories_id, "desativar"))!!}" class="btn waves-effect waves-light btn-success"> 
 										<i class="ti-check"></i> 
 									</a>
 									@elseif($value->status == 2)
-									<a title="Status: Inativo" href="{!!route('cms-categories-status', array($value->categories_id, "ativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Inativo" href="{!!route('cms-categories-status', array($value->categories_id, "ativar"))!!}" class="btn waves-effect waves-light btn-danger"> 
 										<i class="ti-close"></i> 
 									</a>
 									@endif

@@ -21,11 +21,26 @@ class AdClients extends Model
 			break;
 		}
 	}
+	public function priority() {
+		
+		switch ($this->priority) {
+			case '1':
+				return '<span class="label label-rounded label-success">Alta</span>';
+			break;
+			case '2':
+				return '<span class="label label-rounded label-warning">Média</span>';
+			break;
+			case '3':
+				return '<span class="label label-rounded label-inverse">Baixa</span>';
+			break;
+		}
+	}
 
 	public function adverts()
     {
-        return $this->belongsToMany('App\Model\Adverts', 'advertiser_id', 'advertiser_id');
+        return $this->belongsToMany('App\Model\AdBenners', 'ad_clients_id', 'ad_clients_id');
     }
 
 
 }
+ 

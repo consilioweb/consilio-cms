@@ -79,17 +79,17 @@
 								<td>{!!$value->type_module()!!}</td>								
 								<td class="" width="165">
 									@if($value->status == 1)
-									<a title="Status: Ativo" href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Ativo" href="{!!route('cms-modules-status', array($value->modules_id, "desativar"))!!}" class="btn waves-effect waves-light btn-success"> 
 										<i class="ti-check"></i> 
 									</a>
 									@elseif($value->status == 2)
-									<a title="Status: Inativo" href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn waves-effect waves-light btn-light"> 
+									<a title="Status: Inativo" href="{!!route('cms-modules-status', array($value->modules_id, "ativar"))!!}" class="btn waves-effect waves-light btn-danger"> 
 										<i class="ti-close"></i> 
 									</a>
 									@endif
 									
-									<button title="Apagar" type="button" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </button>
-									<button title="Editar" type="button" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </button>
+									<a title="Apagar" href="{!!route('cms-modules-delete', $value->modules_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="icon-trash"></i> </a>
+									<a title="Editar" href="{!!route('cms-modules-show', $value->modules_id)!!}" class="btn waves-effect waves-light btn-light"> <i class="ti-pencil"></i> </a>
 								</td>
 							</tr>
 							@endforeach

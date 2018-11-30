@@ -1,0 +1,10 @@
+.border-preview-img #image-holder {
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  text-align: center;
+  border: dashed 2px #c3c3c3;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=cms-advertisers-create.css.map */

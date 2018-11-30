@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\CmsController;
 
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Model\Modules;
@@ -14,30 +14,16 @@ use App\Model\AdLocations;
 
 
 
-class AdvertsController extends CmsController
+class AdvertisersController extends CmsController
 {
 
 	public function index(Request $request)
 	{
-		$adverts = AdBanners::orderBy("ad_banners_id", "DESC");
 
-		if($request->input('title'))
-		{
-			$adverts->where('title', 'like', '%'.$request->input('title').'%');
-		}
+		$advertisers = AdClients::orderBy("ad_clients_id", "DESC");
 
-		if($request->input('status'))
-		{
-			$adverts->where('status', $request->input('status'));
-		}
-
-
-		$pages = Modules::where('status', '1')->get();
-
-
-
-		return view("cms/pages/adverts/index", array(
-			"adverts" => $adverts->paginate(50),
+		return view("cms/pages/advertisers/index", array(
+			"advertisers" => $advertisers->paginate(50),
 		));
 	}
 
@@ -45,15 +31,7 @@ class AdvertsController extends CmsController
 
 	public function create()
 	{
-
-		$clients = AdClients::all()->pluck('title', 'ad_clients_id');
-		$locations = AdLocations::all()->pluck('title', 'ad_locations_id');
-
-
-		return view("cms/pages/adverts/show", array(
-			"clients" => $clients,
-			"locations" => $locations,
-		));
+		return view("cms/pages/advertisers/show");
 	}
 
 
@@ -74,41 +52,33 @@ class AdvertsController extends CmsController
 			$destinationPath = public_path('storage/files/');
 			$file->move($destinationPath, $input['imagename']);
 			$request->merge(array(
-				'file' =>  $name_img,
+				'logo' =>  $name_img,
 			));
 		}
 
 
 		try {
-			$adverts = AdBanners::create($request->all());
-			return redirect(route('cms-adverts-show', $adverts->ad_banners_id)); 
+			$advertisers = AdClients::create($request->all());
+			return redirect(route('cms-advertisers-show', $advertisers->ad_clients_id)); 
 		} catch (Exception $e) {
 			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
-			return redirect(route('cms-adverts')); 
+			return redirect(route('cms-advertisers')); 
 		}        
 	}
 
 
 	public function show($id)
-	{   
-
-		
+	{   		
 
 
-		$adverts = AdBanners::find($id);
+		$advertisers = AdClients::find($id);
 
-		if (empty($adverts)) {
+		if (empty($advertisers)) {
 			abort(404);
 		}
 
-
-		$clients = AdClients::all()->pluck('title', 'ad_clients_id');
-		$locations = AdLocations::all()->pluck('title', 'ad_locations_id');
-
-		return view("cms/pages/adverts/show", array(
-			"adverts" => $adverts,
-			"clients" => $clients,
-			"locations" => $locations,
+		return view("cms/pages/advertisers/show", array(
+			"advertisers" => $advertisers,
 		));
 	}
 
@@ -118,48 +88,62 @@ class AdvertsController extends CmsController
 
 		try {
 
-			AdBanners::find($id)->update($request->all());
+			if($request->hasFile('image')) {
+
+				$file = $request->file('image');
+				$input['imagename'] = md5(time()).'.'.$file->getClientOriginalExtension();
+				$name_img = md5(time()).'.'.$file->getClientOriginalExtension();
+				$destinationPath = public_path('storage/files/');
+				$file->move($destinationPath, $input['imagename']);
+				$request->merge(array(
+					'logo' =>  $name_img,
+				));
+			}
+
+
+
+			AdClients::find($id)->update($request->all());
 			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
 		} catch (Exception $e) {
 			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
 		}
 
-		return redirect(route('cms-adverts'));
+		return redirect(route('cms-advertisers'));
 	}
 
 
 	public function destroy(Request $request, $id)
 	{
 		try {
-			$adverts = AdBanners::find($id);
+			$advertisers = AdClients::find($id);
 
-			if(empty($adverts)) {
+			if(empty($advertisers)) {
 				abort(404);
 			}
 
-			$adverts->delete();
+			$advertisers->delete();
 			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
 		} catch (Exception $e) {
 			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
 		}
 
-		return redirect(route('cms-adverts'));
+		return redirect(route('cms-advertisers'));
 	}
 
 	public function status(Request $request, $id, $action)
 	{
 
 		try {
-			$adverts = AdBanners::find($id);
+			$advertisers = AdClients::find($id);
 
-			if(empty($adverts)) {
+			if(empty($advertisers)) {
 				abort(404);
 			}
 
 			if($action == "desativar"){
-				$adverts->update(['status' => '2']);
+				$advertisers->update(['status' => '2']);
 			}else if($action == "ativar"){
-				$adverts->update(['status' => '1']);            
+				$advertisers->update(['status' => '1']);            
 			}
 
 			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
@@ -167,7 +151,7 @@ class AdvertsController extends CmsController
 			$request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
 		}
 
-		return redirect(route('cms-adverts'));
+		return redirect(route('cms-advertisers'));
 	}
 
 

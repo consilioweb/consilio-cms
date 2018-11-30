@@ -24,7 +24,7 @@
 			</div>
 		</div>
 	</div> 
-</div>
+</div> 
 
 
 <div class="container-fluid">
@@ -37,7 +37,7 @@
 					<div class="col-sm-12 col-xs-12">
 
 						@if(isset($adverts))
-						{!! Form::model($adverts, ['route' => ['cms-adverts-update', $adverts->adverts_id], 'method' => 'put', 'files' => true]) !!}
+						{!! Form::model($adverts, ['route' => ['cms-adverts-update', $adverts->ad_banners_id], 'method' => 'put', 'files' => true]) !!}
 						@else
 						{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-adverts-create'], 'files' => true]) !!}
 						@endif  
@@ -62,7 +62,7 @@
 							<div class="col-lg-3">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1"><i class="ti-user" aria-hidden="true"></i></span>
+										<span class="input-group-text" id="basic-addon1"><i class="far fa-object-group" aria-hidden="true"></i></span>
 									</div>
 									{!!Form::select('ad_locations_id', $locations, null, ['placeholder' => "Selecione o Local", 'class' => 'form-control ', "required" => "required"]) !!}	
 								</div>
@@ -145,7 +145,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1"><i class="fab fa-google" aria-hidden="true"></i></span>
 										</div>
-										{!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código do Google aqui ', 'rows' => '3']) !!}
+										{!! Form::textarea('code_google', null, ['class' => 'form-control', 'placeholder' => 'Cole seu código do Google aqui ', 'rows' => '3']) !!}
 									</div>
 								</div>
 							</div>
@@ -203,7 +203,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1"><i class="ti-mouse-alt" aria-hidden="true"></i></span>
 										</div>
-										{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Clicks ', 'disabled' => true]) !!}
+										{!! Form::text('click', null, ['class' => 'form-control', 'placeholder' => 'Clicks ', 'disabled' => true]) !!}
 									</div>
 								</div>	
 								<div class="col-6">
@@ -211,7 +211,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1"><i class="icon-eye" aria-hidden="true"></i></span>
 										</div>
-										{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Visualizações ', 'disabled' => true]) !!}
+										{!! Form::text('view', null, ['class' => 'form-control', 'placeholder' => 'Visualizações ', 'disabled' => true]) !!}
 									</div>
 								</div>						
 							</div>

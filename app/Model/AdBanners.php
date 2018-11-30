@@ -9,7 +9,7 @@ class AdBanners extends Model
 {
     protected $table      = "ad_banners";
 	protected $primaryKey = 'ad_banners_id';
-	protected $fillable   = ['ad_clients_id','ad_locations_id','type', 'title', 'price', 'start_date', 'end_date','code','file','url', 'view', 'click', 'status', 'states_id','created_at', 'updated_at'];
+	protected $fillable   = ['ad_clients_id','ad_locations_id','type', 'title', 'price', 'start_date', 'end_date','code','code_google', 'file','url', 'view', 'click', 'status', 'states_id','created_at', 'updated_at'];
 
 	public function status() {
 		
@@ -36,7 +36,7 @@ class AdBanners extends Model
 			break;
 		}
 	}
-
+ 
 
     public function getStartDateAttribute($start_date)
     {
