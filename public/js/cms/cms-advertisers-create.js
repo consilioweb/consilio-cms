@@ -63,5 +63,5 @@
 
 	}
 	new Mask();
-}(jQuery)); 
+}(jQuery));  
 //# sourceMappingURL=cms-advertisers-create.js.map

@@ -24,13 +24,13 @@ class AdClients extends Model
 	public function priority() {
 		
 		switch ($this->priority) {
-			case '1':
+			case '3':
 				return '<span class="label label-rounded label-success">Alta</span>';
 			break;
 			case '2':
 				return '<span class="label label-rounded label-warning">Média</span>';
 			break;
-			case '3':
+			case '1':
 				return '<span class="label label-rounded label-inverse">Baixa</span>';
 			break;
 		}

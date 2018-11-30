@@ -33,4 +33,4 @@
 
 	}
 	new Mask();
-}(jQuery)); 
+}(jQuery));  

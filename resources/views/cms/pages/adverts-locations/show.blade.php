@@ -36,7 +36,7 @@
 					<div class="col-sm-12 col-xs-12">
 
 						@if(isset($adverts_locations))
-						{!! Form::model($adverts_locations, ['route' => ['cms-adverts-locations-update', $adverts_locations->ad_clients_id], 'method' => 'put', 'files' => true]) !!}
+						{!! Form::model($adverts_locations, ['route' => ['cms-adverts-locations-update', $adverts_locations->ad_locations_id], 'method' => 'put', 'files' => true]) !!}
 						@else
 						{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['cms-adverts-locations-create'], 'files' => true]) !!}
 						@endif  

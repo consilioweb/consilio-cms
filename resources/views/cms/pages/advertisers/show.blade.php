@@ -76,7 +76,7 @@
 								<h4 class="card-title">Prioridade do Anunciante</h4>
 								<div class="form-check form-check-inline">
 									<div class="custom-control custom-radio">										
-										{!! Form::radio('priority', '1', isset($adverts->priority) ? $adverts->priority == 1 : null, ['class' => 'custom-control-input ', 'required' => 'required', 'id' => 'alta']) !!}
+										{!! Form::radio('priority', '3', isset($adverts->priority) ? $adverts->priority == 3 : null, ['class' => 'custom-control-input ', 'required' => 'required', 'id' => 'alta']) !!}
 										<label class="custom-control-label" for="alta">Alta</label>
 									</div>
 								</div>
@@ -88,7 +88,7 @@
 								</div>
 								<div class="form-check form-check-inline">
 									<div class="custom-control custom-radio">
-										{!! Form::radio('priority', '3', isset($adverts->priority) ? $adverts->priority == 3 : null, ['class' => 'custom-control-input', 'required' => 'required', 'id' => 'Baixa']) !!}
+										{!! Form::radio('priority', '1', isset($adverts->priority) ? $adverts->priority == 1 : null, ['class' => 'custom-control-input', 'required' => 'required', 'id' => 'Baixa']) !!}
 										<label class="custom-control-label" for="Baixa">Baixa</label>
 									</div>
 								</div>

@@ -171,7 +171,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1"><i class="ti-money" aria-hidden="true"></i></span>
 										</div>
-										{!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Preço ', 'autocomplete' => 'off ']) !!}
+										{!! Form::text('price', null, ['class' => 'form-control ', 'placeholder' => 'Preço ', 'autocomplete' => 'off ']) !!}
 									</div>
 								</div>						
 							</div>
