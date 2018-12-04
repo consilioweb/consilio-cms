@@ -119,26 +119,10 @@
 
 <?php
 
-function get_random_item($item_count) {
-	mt_srand(microtime() * 1000000);
-	$random_number = rand(0, $item_count);
-	return $random_number;
-}
+$banner = ads_show(1);
 
-$banner_array = array();
-$ads_dados = array();
+echo $banner;
 
-
-foreach($adverts as $value){
-
-	for ($i = 0; $i < $value->advertiser->priority; $i++) {
-		$banner_array[] = $value->title;
-		$ads_dados[] = $value;
-	}
-
-}
-
-$item_count = count($banner_array) - 1;
 
 ?>
 

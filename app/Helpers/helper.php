@@ -6,6 +6,10 @@ require __DIR__.'/../../vendor/autoload.php';
 // import the Intervention Image Manager Class
 use Intervention\Image\ImageManagerStatic as Image;
 
+use App\Model\AdBanners;
+use App\Model\AdLocations;
+use App\Model\AdClients;
+
 
 if (!function_exists('human_file_size')) {
     /**
@@ -785,4 +789,104 @@ if ( ! function_exists( 'prettify_numbers' ))
     // Retorna o número e o símbolo
         return $number . $simbol;
     }
+}
+
+
+if ( ! function_exists('get_random_item'))
+{
+
+    function get_random_item($itens_count)
+    {
+        mt_srand(microtime() * 1000000);
+        $random_number = rand(0, $itens_count);
+        return $random_number;
+    }
+
+}
+
+
+if ( ! function_exists('ads_show') )
+{
+
+    function ads_show($locations_id)
+    {
+        $hoje = date("Y-m-d H:i:s"); 
+        $ads_banner = NULL;       
+
+        $location = AdLocations::where('ad_locations_id', $locations_id)->where('status', TRUE)->first();
+
+        if(!is_null($location)){
+
+            # Tamanho do Banner ( Modulo / Local )
+            $size = explode("/", $location->size);
+
+            # Pesquisa Os banners do Modulo $this->location
+            $adverts = AdBanners::where('ad_locations_id', $locations_id)->where('status', TRUE)->get();
+
+
+
+            if(count($adverts) != 0){
+
+                $banner_array = array();
+                $ads_dados = array();
+
+                foreach ($adverts as $value) {
+                    for ($i = 0; $i < $value->advertiser->priority; $i++) {
+                        $banner_array[] = $value->title;
+                        $ads_dados[] = $value;
+                    }
+                }
+
+                $item_count = count($banner_array) - 1;
+                $new_ads = $ads_dados[get_random_item($item_count)];
+
+                if(($new_ads->start_date != NULL) && ($new_ads->end_date != NULL))
+                {
+                    if(($hoje > $new_ads->start_date) && ($hoje < $new_ads->end_date)){
+                        $show = TRUE;
+                    }else{
+                        $show = FALSE;
+                        AdBanners::where('ad_banners_id', $new_ads->ad_banners_id)->update(['status' => '2']);
+                    }
+                }
+
+                if(!$show){
+                    $new_ads = $ads_dados[get_random_item($item_count)];
+                }
+
+                if($new_ads->type == '1'){
+                    $ext = str_replace('.', '', strrchr($new_ads->file, '.'));
+
+                    if($ext == 'swf'){
+                        $ads_banner = '
+                        <object width="' . $size[0] . '" height="' . $size[1] . '">
+                        <param name="movie" value="' . url("/") . '/public/storage/files/'. $new_ads->file .'">
+                        <embed src="' . url("/") . '/public/storage/files/'. $new_ads->file .'" width="' . $size[0] . '" height="' . $size[1] . '">
+                        </embed>
+                        </object>
+                        ';
+                    }elseif(($ext == "html") OR ( $ext == "htm")){
+                        $ads_banner = '
+                        <IFRAME name=ad_html src="' . url("/") . '/public/storage/files/'. $new_ads->file .'" width="' . $size[0] . '" height="' . $size[1] . '" frameborder=0 scrolling=no></IFRAME>';
+                    }elseif(($ext == "jpg") OR ( $ext == "png") OR ( $ext == "JPEG") OR ( $ext == "JPG") OR ( $ext == "gif") OR ( $ext == "GIF")){
+                        $ads_banner = ' 
+                        <a href="'.url("/").'/api/redirect/banner/' . $new_ads->ad_banners_id . '" target="_blank"><img src="' . img_src($new_ads->file, $size[0], $size[1], true, true) . '" alt="' . $new_ads->title .'"/></a>
+                        ';
+                    }   
+
+                }elseif($new_ads->type == '2'){
+                    $ads_banner = html_entity_decode($new_ads->code_google);
+                }elseif($new_ads->type == '3'){
+                    $ads_banner = html_entity_decode($new_ads->code);
+                }
+
+
+            }else{
+                $ads_banner = '<img src="//placehold.it/'.$size[0].'x'.$size[1].'">';
+            }
+        }
+
+        return $ads_banner;
+    }
+
 }
