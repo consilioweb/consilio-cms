@@ -90,7 +90,7 @@
                             </a>
                         </li> 
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-polls')!!}" aria-expanded="false">
                                 <i class="mdi mdi-radiobox-marked"></i>
                                 <span class="hide-menu">Enquete</span>
                             </a>

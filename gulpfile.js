@@ -107,6 +107,14 @@ elixir((mix) => {
 	mix.sass(['resources/assets/sass/cms/pages/advertisers-show.scss'], 'public/css/cms/cms-advertisers-show.css');
 	/*------------------------------------------------------------------------*/
 
+	
+	mix.sass(['resources/assets/sass/cms/pages/polls-create.scss'], 'public/css/cms/cms-polls-create.css');
+	/*------------------------------------------------------------------------*/
+
+	
+	mix.sass(['resources/assets/sass/cms/pages/polls-show.scss'], 'public/css/cms/cms-polls-show.css');
+	/*------------------------------------------------------------------------*/
+
 
 	/* JS Libs Cms */
 	mix.scripts([
@@ -246,6 +254,20 @@ elixir((mix) => {
 	/*------------------------------------------------------------------------*/
 
 
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-polls-create-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/libs/bootstrap-datepicker.min.js',
+		], 'public/js/cms/cms-polls-show-libs.js'); 
+	/*------------------------------------------------------------------------*/
+
+
 	//
 	/* MODULES */
 	//
@@ -333,8 +355,6 @@ elixir((mix) => {
 
 
 
-
-
 	mix.scripts([
 		'resources/assets/js/cms/modules/preview.swf.js',
 		'resources/assets/js/cms/modules/datapicker.js',
@@ -366,6 +386,20 @@ elixir((mix) => {
 		'resources/assets/js/cms/modules/preview.file.js',
 		'resources/assets/js/cms/modules/mask.js',
 		], 'public/js/cms/cms-advertisers-show.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-polls-create.js'); 	
+	/*------------------------------------------------------------------------*/
+
+
+
+	mix.scripts([
+		'resources/assets/js/cms/modules/datapicker.js',
+		], 'public/js/cms/cms-polls-show.js'); 	
 	/*------------------------------------------------------------------------*/
 
 

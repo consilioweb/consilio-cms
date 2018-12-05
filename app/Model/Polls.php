@@ -5,11 +5,11 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class AdBanners extends Model
+class Polls extends Model
 {
-	protected $table      = "ad_banners";
-	protected $primaryKey = 'ad_banners_id';
-	protected $fillable   = ['ad_clients_id','ad_locations_id','type', 'title', 'price', 'start_date', 'end_date','code','code_google', 'file','url', 'view', 'click', 'status', 'states_id','created_at', 'updated_at'];
+	protected $table      = "polls";
+	protected $primaryKey = 'polls_id';
+	protected $fillable   = ['question','start_date', 'end_date','view','show','status', 'created_at', 'updated_at'];
 
 	public function status() {
 		
@@ -22,21 +22,34 @@ class AdBanners extends Model
 			break;
 		}
 	}
-	public function type() {
+	public function show() {
 		
-		switch ($this->status) {
+		switch ($this->show) {
 			case '1':
-			return "Arquivo";
+			return "Mostrar";
 			break;
 			case '2':
-			return "Google";
-			break;
-			case '3':
-			return "Código/HTML5";
+			return "Esconder";
 			break;
 		}
 	}
 
+
+
+	public function questions()
+	{
+		return $this->hasMany('App\Model\PollsQuestions', 'polls_id', 'polls_id');
+	}
+
+	public function sumVotes()
+	{
+		$sum = 0;
+		foreach ($this->questions() as $value){
+			$sum =+ $value->votes;
+		}
+		return $sum;
+
+	}
 
 	public function getStartDateAttribute($start_date)
 	{
@@ -56,7 +69,6 @@ class AdBanners extends Model
 		}
 	}
 
-
 	public function getEndDateAttribute($end_date)
 	{
 		if(strlen($end_date)){
@@ -75,28 +87,9 @@ class AdBanners extends Model
 		}
 	}
 
-
-	public function advertiser()
-	{
-		return $this->hasOne('App\Model\AdClients', 'ad_clients_id', 'ad_clients_id');
-	}
-
-	public function location()
-	{
-		return $this->hasOne('App\Model\AdLocations', 'ad_locations_id', 'ad_locations_id');
-	}
-
-
 	public function setView()
 	{
 		$this->view =$this->view + 1;
-		$this->save();
-		return $this;
-	}
-
-	public function setClick()
-	{
-		$this->click = $this->click + 1;
 		$this->save();
 		return $this;
 	}

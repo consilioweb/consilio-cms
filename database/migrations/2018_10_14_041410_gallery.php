@@ -21,6 +21,7 @@ class Gallery extends Migration
             $table->string('legend')->nullable();
             $table->string('file');
             $table->string('type')->nullable();
+            $table->string('extension')->nullable();
             
             $table->integer('insert_users_id')->nullable();
             $table->integer('update_users_id')->nullable();

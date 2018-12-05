@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Model\Modules;
 use App\Model\Contents;
 use App\Model\Gallery;
+use App\Model\Definitions;
 
 
 class GalleryController extends CmsController
@@ -39,9 +40,10 @@ class GalleryController extends CmsController
 		//$destinationPath = public_path('storage/files/');
 		$caminho = public_path('storage/files/');
 
-		$destinationPath = "/cms-default/public/storage/files/";
+		# TROCAR
+		$destinationPath = "/cms-consilio/public/storage/files/";
 
-		$gallery 	= Gallery::where('type', '1')->where('contents_id', $contents_id)->where('modules_id', $modules_id)->orderBy("gallery_id", "DESC")->get();
+		$gallery = Gallery::where('type', '1')->where('contents_id', $contents_id)->where('modules_id', $modules_id)->orderBy("gallery_id", "DESC")->get();
 
 
 		foreach ($gallery as $value) {

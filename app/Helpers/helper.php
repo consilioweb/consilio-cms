@@ -810,8 +810,17 @@ if ( ! function_exists('ads_show') )
 
     function ads_show($locations_id)
     {
-        $hoje = date("Y-m-d H:i:s"); 
-        $ads_banner = NULL;       
+        /*COMO USAR*/
+        # $banner = ads_show(1);
+        # 1 = Módulo que será usado;
+        # @paaram: echo $banner;
+        /*
+            ERRORS:
+                2558: Sem Módulo Encontrado;                
+        */
+
+        $hoje = date("Y-m-d"); 
+        $ads_banner = "<pre style='font-size: 8pt; text-align: center;'>erro:2558</pre>";       
 
         $location = AdLocations::where('ad_locations_id', $locations_id)->where('status', TRUE)->first();
 
@@ -819,11 +828,11 @@ if ( ! function_exists('ads_show') )
 
             # Tamanho do Banner ( Modulo / Local )
             $size = explode("/", $location->size);
+            $w = (int)$size[0];
+            $h = (int)$size[1];
 
             # Pesquisa Os banners do Modulo $this->location
             $adverts = AdBanners::where('ad_locations_id', $locations_id)->where('status', TRUE)->get();
-
-
 
             if(count($adverts) != 0){
 
@@ -842,17 +851,26 @@ if ( ! function_exists('ads_show') )
 
                 if(($new_ads->start_date != NULL) && ($new_ads->end_date != NULL))
                 {
-                    if(($hoje > $new_ads->start_date) && ($hoje < $new_ads->end_date)){
+                    $start = explode("/", $new_ads->start_date);
+                    $end = explode("/", $new_ads->end_date);
+                    $start  = $start[2] . '-' . $start[1] . '-' . $start[0];
+                    $end    = $end[2] . '-' . $end[1] . '-' . $end[0];
+
+                    if(($hoje > $start) && ($hoje < $end)){
                         $show = TRUE;
                     }else{
                         $show = FALSE;
                         AdBanners::where('ad_banners_id', $new_ads->ad_banners_id)->update(['status' => '2']);
                     }
+                }else{
+                    $show = TRUE;
                 }
 
                 if(!$show){
                     $new_ads = $ads_dados[get_random_item($item_count)];
                 }
+                # Aumenta Contagem de Visualizações
+                AdBanners::where('ad_banners_id', $new_ads->ad_banners_id)->first()->setView();
 
                 if($new_ads->type == '1'){
                     $ext = str_replace('.', '', strrchr($new_ads->file, '.'));
@@ -869,24 +887,19 @@ if ( ! function_exists('ads_show') )
                         $ads_banner = '
                         <IFRAME name=ad_html src="' . url("/") . '/public/storage/files/'. $new_ads->file .'" width="' . $size[0] . '" height="' . $size[1] . '" frameborder=0 scrolling=no></IFRAME>';
                     }elseif(($ext == "jpg") OR ( $ext == "png") OR ( $ext == "JPEG") OR ( $ext == "JPG") OR ( $ext == "gif") OR ( $ext == "GIF")){
-                        $ads_banner = ' 
-                        <a href="'.url("/").'/api/redirect/banner/' . $new_ads->ad_banners_id . '" target="_blank"><img src="' . img_src($new_ads->file, $size[0], $size[1], true, true) . '" alt="' . $new_ads->title .'"/></a>
+                        $ads_banner = '
+                        <a href="'.url("/").'/api/redirect/ads/' . $new_ads->ad_banners_id . '" target="_blank" title="' . $new_ads->title .'"><img src="' . img_src($new_ads->file, $w,$h, true, true) . '" alt="' . $new_ads->title .'"/></a>
                         ';
                     }   
-
                 }elseif($new_ads->type == '2'){
                     $ads_banner = html_entity_decode($new_ads->code_google);
                 }elseif($new_ads->type == '3'){
                     $ads_banner = html_entity_decode($new_ads->code);
                 }
-
-
             }else{
                 $ads_banner = '<img src="//placehold.it/'.$size[0].'x'.$size[1].'">';
             }
         }
-
         return $ads_banner;
     }
-
 }

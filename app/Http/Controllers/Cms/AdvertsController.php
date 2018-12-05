@@ -11,6 +11,7 @@ use App\Model\Modules;
 use App\Model\AdBanners;
 use App\Model\AdClients;
 use App\Model\AdLocations;
+use Excel;
 
 
 
@@ -168,6 +169,64 @@ class AdvertsController extends CmsController
 		}
 
 		return redirect(route('cms-adverts'));
+	}
+
+	public function report()
+	{
+
+
+		$adverts = AdBanners::orderBy("ad_banners_id", "DESC")->get();
+		
+		$data = $adverts;
+
+		Excel::create('Relatório de Anuncios '.date("d-m-Y H:i:s"), function($excel) use($data){
+			$excel->setTitle('Relatório de Anuncios '.date("d-m-Y H:i:s"));
+			$excel->setCreator('Agencia Consilio')->setCompany('Agencia Consilio');
+
+			$schema_columns = array(
+				'ID',
+				'Anunciante',
+				'Titulo',
+				'Local',
+				'Data Incio',
+				'Data Fim',
+				'Cliques',
+				'Visualizações',
+				'Status',
+				'Criado em:'
+			);
+			$excel->sheet('Relatório de Anuncios', function($sheet) use($schema_columns, $data) {
+				$sheet->setOrientation('landscape');
+				$sheet->setHeight(1, 30);
+				$sheet->row(1,  $schema_columns);
+				$sheet->cells('A1:J1', function($cells) {
+                   $cells->setBackground('#fa5838');
+                   $cells->setFontColor('#ffffff');
+                   $cells->setFontSize(12);
+                   $cells->setValignment('center');
+                   $cells->setAlignment('center');
+				});
+				foreach ($data as $key => $value)
+                {                	
+                    $key += 2;
+                	 $sheet->row($key, array(
+                		$value->ad_banners_id,
+                		$value->advertiser->title,
+                		$value->title,
+                		$value->location->title . ' - ' . $value->location->size(),
+                		isset($value->start_date) ? $value->start_date : " ",
+                		isset($value->end_date) ? $value->end_date : " ",
+                		$value->click,
+                		$value->view,
+                		$value->status(),
+                		$value->created_at
+                	));
+                	$sheet->setHeight($key, 20);
+                } 
+			});
+
+		})->export('xls');
+
 	}
 
 

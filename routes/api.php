@@ -17,3 +17,5 @@ Route::post('states/{code}',"Api\StatesController@show");
 
 Route::get('upload/images', "Api\FileUploadController@image");
 Route::post('graph/visitors', "Api\GraphController@visitors");
+
+Route::get('redirect/ads/{id}', "Api\RedirectController@ads");

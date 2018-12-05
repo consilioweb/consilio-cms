@@ -95,6 +95,7 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::put('plugins/anuncios/banners/{id}', array('as'          => 'cms-adverts-update', 'uses' => 'AdvertsController@update', 'nickname' => "Atualizar Banners de Anuncios"));
 		Route::get('plugins/anuncios/banners/{id}/excluir', array('as'  => 'cms-adverts-delete', 'uses' => 'AdvertsController@destroy', 'nickname' => "Excluir Banners de Anuncios"));
 		Route::get('plugins/anuncios/banners/{id}/{action}', array('as' => 'cms-adverts-status', 'uses' => 'AdvertsController@status', 'nickname' => "Status de Banners de Anuncios"));
+		Route::get('plugins/anuncios/relatorio', array('as' 	=> 'cms-adverts-report', 'uses' => 'AdvertsController@report', 'nickname' => "Relatorio de Banners de Anuncios"));
 
 		Route::get('plugins/anuncios/anunciantes', array('as' 				=> 'cms-advertisers', 'uses' => 'AdvertisersController@index', 'nickname' => "Listar Anunciantes"));
 		Route::get('plugins/anuncios/anunciantes/novo', array('as'          => 'cms-advertisers-create', 'uses' => 'AdvertisersController@create', 'nickname' => "Criar Anunciantes"));
@@ -115,6 +116,24 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::get('plugins/anuncios/relatorios', array('as' 				=> 'cms-adverts-reports', 'uses' => 'AdvertsController@index', 'nickname' => "Listar Relatórios de Banners"));
 		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+		/* ~~~~~~~~~~~~ENQUETES~~~~~~~~~~~~~~~~~~~~~~~~~*/
+		Route::get('enquetes', array('as'                     		   => 'cms-polls', 'uses' => 'PollsController@index', 'nickname' => "Listar Enquetes"));
+		Route::get('enquetes/novo', array('as'                         => 'cms-polls-create', 'uses' => 'PollsController@create', 'nickname' => "Criar Enquetes"));
+		Route::post('enquetes/novo', array('as'                        => 'cms-polls-create', 'uses' => 'PollsController@store', 'nickname' => "Criar Enquetes"));
+		Route::get('enquetes/{id}', array('as'                         => 'cms-polls-show', 'uses' => 'PollsController@show', 'nickname' => "Visualizar Enquetes"));
+		Route::put('enquetes/{id}', array('as'                         => 'cms-polls-update', 'uses' => 'PollsController@update', 'nickname' => "Atualizar Enquetes"));
+		Route::get('enquetes/excluir/{id}', array('as'                 => 'cms-polls-delete', 'uses' => 'PollsController@destroy', 'nickname' => "Excluir Enquetes"));
+		Route::get('enquetes/status/{id}/{action}', array('as'         => 'cms-polls-status', 'uses' => 'PollsController@status', 'nickname' => "Status de Enquetes"));
+		Route::get('enquetes/exibicao/{id}/{action}', array('as'       => 'cms-polls-exibhtion', 'uses' => 'PollsController@exibhtion', 'nickname' => "Exibição de Enquetes"));
+
+		Route::get('enquetes/opcoes/{poll}/', array('as'           			=> 'cms-polls-questions', 'uses' => 'PollsQuestionsController@index', 'nickname' => "Listar Perguntas de Enquetes"));
+		Route::get('enquetes/opcoes/{poll}/novo', array('as'                 => 'cms-polls-questions-create', 'uses' => 'PollsQuestionsController@create', 'nickname' => "Criar Perguntas de Enquetes"));
+		Route::post('enquetes/opcoes/{poll}/novo', array('as'                => 'cms-polls-questions-create', 'uses' => 'PollsQuestionsController@store', 'nickname' => "Criar Perguntas de Enquetes"));
+		Route::get('enquetes/opcoes/{poll}/{id}', array('as'                 => 'cms-polls-questions-show', 'uses' => 'PollsQuestionsController@show', 'nickname' => "Visualizar Perguntas de Enquetes"));
+		Route::put('enquetes/opcoes/{poll}/{id}', array('as'                 => 'cms-polls-questions-update', 'uses' => 'PollsQuestionsController@update', 'nickname' => "Atualizar Perguntas de Enquetes"));
+		Route::get('enquetes/opcoes/excluir/{poll}/{id}', array('as'         => 'cms-polls-questions-delete', 'uses' => 'PollsQuestionsController@destroy', 'nickname' => "Excluir Perguntas de Enquetes"));
+
+		/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 	});
 });
