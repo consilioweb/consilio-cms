@@ -83,12 +83,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
-                                <i class="mdi mdi-comment-multiple-outline"></i>
-                                <span class="hide-menu">Comentários</span>
-                            </a>
-                        </li> 
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-polls')!!}" aria-expanded="false">
                                 <i class="mdi mdi-radiobox-marked"></i>
@@ -96,24 +90,52 @@
                             </a>
                         </li>
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-newsletters')!!}" aria-expanded="false">
                                 <i class="mdi mdi-email"></i>
                                 <span class="hide-menu">Newletters</span>
                             </a>
                         </li>
+{{--                         <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                                <i class="mdi mdi-comment-multiple-outline"></i>
+                                <span class="hide-menu">Comentários</span>
+                            </a>
+                        </li>  --}}
                         <li class="nav-small-cap">
                             <i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Configurações</span>
                         </li> 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Site</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false"><i class="mdi mdi-tag"></i><span class="hide-menu">SEO</span></a></li>  
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-image-filter-drama"></i><span class="hide-menu">Banco de dados</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Backup</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Limpeza</span></a></li>
-                            </ul>
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{!!route('cms-settings-site')!!}" aria-expanded="false">
+                                <i class="mdi mdi-widgets"></i><span class="hide-menu">Site</span>
+                            </a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span class="hide-menu">Administração</span></a>
+{{--                         <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                                <i class="mdi mdi-tag"></i><span class="hide-menu">SEO</span>
+                            </a>
+                        </li>   --}}
+{{--                         <li class="sidebar-item"> 
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi mdi-image-filter-drama"></i><span class="hide-menu">Banco de dados</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-db-backup')!!}" class="sidebar-link">
+                                        <i class="mdi mdi-octagram"></i><span class="hide-menu"> Backup</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{!!route('cms-db-clean')!!}" class="sidebar-link">
+                                        <i class="mdi mdi-octagram"></i><span class="hide-menu"> Limpeza</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> --}}
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi mdi-notification-clear-all"></i><span class="hide-menu">Administração</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"><a href="{!!route('cms-modules')!!}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Páginas / Módulos</span></a></li>
                                 <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> Definições</span></a></li>

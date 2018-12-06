@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Modules;
 
+use Auth;
+
 
 
 class ModulesController extends CmsController
@@ -20,23 +22,30 @@ class ModulesController extends CmsController
      */
    public function index(Request $request)
    {
+
+    if(Auth::user()->type != '1'){
+        $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+        return redirect(route('cms-dashboard')); 
+        die;
+    }
+
     $modules = Modules::orderBy("modules_id", "DESC");
 
     if($request->input('module'))
     {
-       $modules->where('module', 'like', '%'.$request->input('module').'%');
-   }
+     $modules->where('module', 'like', '%'.$request->input('module').'%');
+ }
 
-   if($request->input('status'))
-   {
-       $modules->where('status', $request->input('status'));
-   }
-
-
-   $pages = Modules::where('status', '1')->get();
+ if($request->input('status'))
+ {
+     $modules->where('status', $request->input('status'));
+ }
 
 
-   return view("cms/pages/modules/index", array(
+ $pages = Modules::where('status', '1')->get();
+
+
+ return view("cms/pages/modules/index", array(
     "modules" => $modules->paginate(50),
     "pages" => $pages,
 ));
@@ -50,14 +59,21 @@ class ModulesController extends CmsController
     public function create()
     {
 
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
+        }
 
-       $pages = Modules::where('status', '1')->get();
 
-       return view("cms/pages/modules/show", array(
+
+        $pages = Modules::where('status', '1')->get();
+
+        return view("cms/pages/modules/show", array(
 
             "pages" => $pages,
-       ));
-   }
+        ));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,7 +84,14 @@ class ModulesController extends CmsController
     public function store(Request $request)
     {
 
-        
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
+        }
+
+
+
         if($request->input('title-checkbox') != 1){
             $request->merge(array(
                 'title' =>  null
@@ -244,6 +267,13 @@ class ModulesController extends CmsController
      */
     public function show($id)
     {   
+
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
+        }
+
         $modules = Modules::find($id);
 
         if (empty($modules)) {
@@ -266,6 +296,13 @@ class ModulesController extends CmsController
      */
     public function update(Request $request, $id)
     {
+
+
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
+        }
 
 
         if($request->input('title-checkbox') != 1){
@@ -441,6 +478,13 @@ class ModulesController extends CmsController
      */
     public function destroy(Request $request, $id)
     {
+
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
+        }
+
         try {
             $modules = Modules::find($id);
 
@@ -460,24 +504,31 @@ class ModulesController extends CmsController
     public function status(Request $request, $id, $action)
     {
 
-       try {
-        $modules = Modules::find($id);
-
-        if(empty($modules)) {
-            abort(404);
+        if(Auth::user()->type != '1'){
+            $request->session()->flash('alert', array('code'=> 'danger', 'text'  => 'Você não tem permissão'));
+            return redirect(route('cms-dashboard')); 
+            die;
         }
 
-        if($action == "desativar"){
-            $modules->update(['status' => '2']);
-        }else if($action == "ativar"){
-            $modules->update(['status' => '1']);            
+
+        try {
+            $modules = Modules::find($id);
+
+            if(empty($modules)) {
+                abort(404);
+            }
+
+            if($action == "desativar"){
+                $modules->update(['status' => '2']);
+            }else if($action == "ativar"){
+                $modules->update(['status' => '1']);            
+            }
+
+            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
+        } catch (Exception $e) {
+            $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }
 
-        $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
-    } catch (Exception $e) {
-        $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
+        return redirect(route('cms-modules'));
     }
-
-    return redirect(route('cms-modules'));
-}
 }

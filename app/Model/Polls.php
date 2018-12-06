@@ -41,16 +41,6 @@ class Polls extends Model
 		return $this->hasMany('App\Model\PollsQuestions', 'polls_id', 'polls_id');
 	}
 
-	public function sumVotes()
-	{
-		$sum = 0;
-		foreach ($this->questions() as $value){
-			$sum =+ $value->votes;
-		}
-		return $sum;
-
-	}
-
 	public function getStartDateAttribute($start_date)
 	{
 		if(strlen($start_date)){
@@ -93,6 +83,6 @@ class Polls extends Model
 		$this->save();
 		return $this;
 	}
-
+ 
 
 }

@@ -133,8 +133,19 @@ Route::group(['namespace' => 'Cms', 'prefix' => 'cms'], function() {
 		Route::put('enquetes/opcoes/{poll}/{id}', array('as'                 => 'cms-polls-questions-update', 'uses' => 'PollsQuestionsController@update', 'nickname' => "Atualizar Perguntas de Enquetes"));
 		Route::get('enquetes/opcoes/excluir/{poll}/{id}', array('as'         => 'cms-polls-questions-delete', 'uses' => 'PollsQuestionsController@destroy', 'nickname' => "Excluir Perguntas de Enquetes"));
 
+		Route::get('newsletters', array('as'                              => 'cms-newsletters', 'uses' => 'NewslettersController@index', 'nickname' => "Listar Newsletters"));
+		Route::get('newsletters/excluir/{id}', array('as'                 => 'cms-newsletters-delete', 'uses' => 'NewslettersController@destroy', 'nickname' => "Excluir Newsletters"));
+		Route::get('newsletters/status/{id}/{action}', array('as'         => 'cms-newsletters-status', 'uses' => 'NewslettersController@status', 'nickname' => "Status de Newsletters"));
+		Route::get('newsletters/relatorio', array('as' 			  	 	  => 'cms-newsletters-report', 'uses' => 'NewslettersController@report', 'nickname' => "Relatorio de Newsletters"));
+
 		/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+
+		Route::get('/banco-de-dados/backup', array('as' => 'cms-db-backup', 'uses' => 'DataBaseController@backup', 'nickname' => "Ver Backup de Banco de Dados"));	
+		Route::post('/banco-de-dados/backup', array('as' => 'cms-db-backup-down', 'uses' => 'DataBaseController@down', 'nickname' => "Realizar Backup de Banco de Dados"));
+
+		Route::get('/banco-de-dados/limpeza', array('as' => 'cms-db-clean', 'uses' => 'DataBaseController@clean', 'nickname' => "Ver Limpeza de Banco de Dados"));	
+		Route::post('/banco-de-dados/limpeza', array('as' => 'cms-db-clean-action', 'uses' => 'DataBaseController@action', 'nickname' => "Realizar Limpeza de Banco de Dados"));	
 	});
 });
 

@@ -24,7 +24,7 @@ class PollsQuestions extends Model
 
 	public function poll()
 	{
-		return $this->hasOne('App\Model\Polls', 'polls_id', 'polls_id');
+		return $this->belongsTo('App\Model\Polls', 'polls_id', 'polls_id');
 	}
 	public function setVote()
 	{

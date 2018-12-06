@@ -23,6 +23,8 @@
 </div>
 
 <div class="container-fluid">
+	<!-- Alerts -->
+	@include('cms.layouts._alerts')
 
 	<div class="card-group">
 		<div class="card bg-gradient-purple">

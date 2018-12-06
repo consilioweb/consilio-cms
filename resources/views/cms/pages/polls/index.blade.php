@@ -76,7 +76,7 @@
 							<tr>
 								<td>{!!$value->question!!}</td>
 								<td>{!!$value->view!!} </td>
-								<td>{!!$value->sumVotes()!!} </td>
+								<td>{!!$value->questions()->sum('votes')!!} </td>
 								<td>
 									@if($value->start_date != '')
 									{!!$value->start_date!!} á {!!$value->end_date!!} 
